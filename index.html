@@ -194,7 +194,7 @@
         <div class="flex items-center gap-4 flex-wrap">
           
           <!-- Small Avatar Badge -->
-          <div class="relative group flex-shrink-0">
+          <div class="relative flex-shrink-0">
             <div class="w-14 h-14 md:w-16 md:h-16 rounded-xl p-0.5 bg-gradient-to-br from-neonCyan via-neonPurple to-neonPink shadow-md relative overflow-hidden">
               <img 
                 id="userAvatar"
@@ -203,11 +203,6 @@
                 class="w-full h-full object-cover rounded-lg bg-cyberCard"
                 onerror="this.onerror=null; this.src='https://placehold.co/150x150/141622/ffffff?text=Carrie';"
               >
-              <!-- Hover Overlay for Upload -->
-              <label for="avatarUpload" class="absolute inset-0 bg-black/75 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center cursor-pointer text-white text-[9px] font-mono gap-0.5">
-                <i class="fa-solid fa-camera text-neonCyan text-xs"></i>
-                <span>EDIT</span>
-              </label>
             </div>
 
             <!-- Live Status Indicator -->
@@ -215,9 +210,6 @@
               <span class="w-2 h-2 rounded-full bg-neonGreen animate-pulse block"></span>
             </div>
           </div>
-
-          <!-- Hidden File Input -->
-          <input type="file" id="avatarUpload" accept="image/*" class="hidden" onchange="handlePhotoUpload(event)">
 
           <!-- Main Name Heading -->
           <h1 class="font-pixel text-3xl md:text-5xl font-bold text-white tracking-wide">
@@ -765,19 +757,6 @@
       const main = document.querySelector('main');
       main.classList.toggle('max-w-6xl');
       main.classList.toggle('max-w-full');
-    }
-
-    // Photo Upload Handler
-    function handlePhotoUpload(event) {
-      const file = event.target.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-          document.getElementById('userAvatar').src = e.target.result;
-          playBeep(880, 0.12, 'sine');
-        };
-        reader.readAsDataURL(file);
-      }
     }
 
     // Copy Email to Clipboard
