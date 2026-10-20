@@ -177,13 +177,15 @@
 
       <div class="relative z-10 flex flex-col md:flex-row gap-6 items-center md:items-start text-center md:text-left">
         
-       <img 
-  id="userAvatar"
-  src="profile.jpg" 
-  alt="Carrie Baclayon" 
-  class="w-full h-full object-cover rounded-xl bg-cyberCard"
-  onerror="this.onerror=null; this.src='https://placehold.co/300x300/141622/ffffff?text=Carrie+B.';"
->
+        <!-- Avatar Wrapper -->
+        <div class="relative group flex-shrink-0 flex flex-col items-center">
+          <div class="relative w-32 h-32 rounded-2xl p-1 bg-gradient-to-br from-neonCyan via-neonPurple to-neonPink shadow-lg group">
+            <img 
+              id="userAvatar"
+              src="profile.jpg" 
+              alt="Carrie Baclayon" 
+              class="w-full h-full object-cover rounded-xl bg-cyberCard"
+              onerror="this.onerror=null; this.src='https://placehold.co/300x300/141622/ffffff?text=Carrie+B.';"
             >
             <!-- Hover Overlay for Upload -->
             <label for="avatarUpload" class="absolute inset-0 bg-black/60 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center cursor-pointer text-white text-[10px] font-mono gap-1">
@@ -601,38 +603,35 @@
               <button 
                 onclick="copyEmailToClipboard()" 
                 id="copyBtn"
-                class="w-full bg-neonGold hover:bg-yellow-400 text-black font-pixel font-bold py-3 rounded-xl transition-all cursor-pointer flex items-center justify-center gap-2 text-sm"
+                class="w-full py-3 bg-gradient-to-r from-neonCyan via-neonPurple to-neonPink hover:opacity-90 text-white font-mono font-bold text-xs rounded-lg transition-all shadow-lg flex items-center justify-center gap-2 cursor-pointer"
               >
-                <i class="fa-solid fa-clipboard-check"></i>
-                <span id="copyBtnLabel">COPY EMAIL ADDRESS</span>
+                <i class="fa-solid fa-copy"></i> COPY EMAIL ADDRESS
               </button>
             </div>
 
-            <!-- Social Links & Resume Access -->
+            <!-- Social Links & Resume Download -->
             <div class="bg-cyberHeader/60 border border-cyberBorder p-6 rounded-xl space-y-4 flex flex-col justify-between">
               <div class="space-y-3">
                 <span class="text-xs font-mono text-neonCyan font-bold block"><i class="fa-solid fa-link"></i> EXTERNAL NETWORKS</span>
                 
-                <div class="space-y-2 font-mono text-xs">
-                  <a href="https://linkedin.com" target="_blank" class="bg-cyberCard hover:bg-cyberCard/80 border border-cyberBorder p-3 rounded-lg flex items-center justify-between text-slate-200 transition-colors block">
-                    <span class="flex items-center gap-2"><i class="fa-brands fa-linkedin text-neonCyan"></i> LinkedIn Profile</span>
-                    <i class="fa-solid fa-arrow-up-right-from-square text-slate-500 text-[10px]"></i>
-                  </a>
+                <a href="https://www.linkedin.com/in/carriecuibaclayon/" target="_blank" class="flex items-center justify-between p-3 bg-cyberCard border border-cyberBorder hover:border-neonCyan rounded-lg text-xs font-mono text-slate-200 transition-colors group">
+                  <span class="flex items-center gap-2"><i class="fa-brands fa-linkedin text-neonCyan text-sm"></i> LinkedIn Profile</span>
+                  <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-slate-500 group-hover:text-neonCyan"></i>
+                </a>
 
-                  <a href="https://hellokieri.substack.com/" target="_blank" class="bg-cyberCard hover:bg-cyberCard/80 border border-cyberBorder p-3 rounded-lg flex items-center justify-between text-slate-200 transition-colors block">
-                    <span class="flex items-center gap-2"><i class="fa-solid fa-bookmark text-neonPink"></i> Substack (@hellokieri)</span>
-                    <i class="fa-solid fa-arrow-up-right-from-square text-slate-500 text-[10px]"></i>
-                  </a>
-                </div>
+                <a href="https://hellokieri.substack.com/" target="_blank" class="flex items-center justify-between p-3 bg-cyberCard border border-cyberBorder hover:border-neonPink rounded-lg text-xs font-mono text-slate-200 transition-colors group">
+                  <span class="flex items-center gap-2"><i class="fa-solid fa-newspaper text-neonPink text-sm"></i> Substack Newsletter</span>
+                  <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-slate-500 group-hover:text-neonPink"></i>
+                </a>
               </div>
 
-              <button 
-                onclick="triggerResumeNotification()" 
-                class="w-full bg-cyberBorder hover:bg-slate-700 text-white font-pixel font-bold py-3 rounded-xl transition-all cursor-pointer flex items-center justify-center gap-2 text-sm border border-slate-600"
+              <a 
+                href="Carrie_Baclayon_Resume.pdf" 
+                download 
+                class="w-full py-3 bg-cyberCard border-2 border-neonGold/60 hover:border-neonGold text-neonGold font-mono font-bold text-xs rounded-lg transition-all flex items-center justify-center gap-2 text-center"
               >
-                <i class="fa-solid fa-file-pdf text-neonPink"></i>
-                <span>REQUEST LATEST RESUME (PDF)</span>
-              </button>
+                <i class="fa-solid fa-file-arrow-down"></i> DOWNLOAD RESUME (.PDF)
+              </a>
             </div>
 
           </div>
@@ -644,100 +643,76 @@
   </main>
 
   <!-- ================= FOOTER ================= -->
-  <footer class="max-w-6xl mx-auto px-4 py-6 w-full border-t border-cyberBorder text-center text-xs font-mono text-slate-500 space-y-1">
-    <p>© 2026 CARRIE BACLAYON • ALL RIGHTS RESERVED • CEBU CITY, PH 🇵🇭</p>
-    <p class="text-[10px] text-slate-600">REFINED Y2K TERMINAL ENGINE • BUILT WITH TAILWIND & WEB AUDIO API</p>
+  <footer class="border-t border-cyberBorder bg-cyberHeader/60 py-4 px-4 text-center font-mono text-xs text-slate-500 mt-6">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
+      <div>© 2026 Carrie Baclayon · Operations & Writing</div>
+      <div class="text-[10px] text-slate-600">CEBU CITY, PH // ALL SYSTEMS NOMINAL</div>
+    </div>
   </footer>
 
   <!-- ================= JAVASCRIPT LOGIC ================= -->
   <script>
-    // Handle Photo Upload
-    function handlePhotoUpload(event) {
-      const file = event.target.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-          document.getElementById('userAvatar').src = e.target.result;
-          playSound('action');
-        };
-        reader.readAsDataURL(file);
-      }
+    // Live GMT+8 Clock
+    function updateClock() {
+      const now = new Date();
+      const options = { timeZone: 'Asia/Manila', hour12: true, hour: '2-digit', minute: '2-digit', second: '2-digit' };
+      document.getElementById('liveClock').innerText = now.toLocaleTimeString('en-US', options) + ' PHT';
     }
+    setInterval(updateClock, 1000);
+    updateClock();
 
-    // Audio State & Web Audio API SFX Synthesizer
-    let soundEnabled = true;
+    // Sound FX Synthesizer (Web Audio API)
+    let audioEnabled = true;
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
     let audioCtx = null;
 
-    function playSound(type) {
-      if (!soundEnabled) return;
+    function playBeep(freq = 440, duration = 0.08, type = 'sine') {
+      if (!audioEnabled) return;
       try {
-        if (!audioCtx) {
-          audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        }
-        
+        if (!audioCtx) audioCtx = new AudioContext();
+        if (audioCtx.state === 'suspended') audioCtx.resume();
         const osc = audioCtx.createOscillator();
         const gain = audioCtx.createGain();
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+        gain.gain.setValueAtTime(0.05, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
         osc.connect(gain);
         gain.connect(audioCtx.destination);
-
-        const now = audioCtx.currentTime;
-
-        if (type === 'tab') {
-          osc.type = 'square';
-          osc.frequency.setValueAtTime(440, now);
-          osc.frequency.exponentialRampToValueAtTime(880, now + 0.08);
-          gain.gain.setValueAtTime(0.04, now);
-          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.08);
-          osc.start(now);
-          osc.stop(now + 0.08);
-        } else if (type === 'copy') {
-          osc.type = 'triangle';
-          osc.frequency.setValueAtTime(523.25, now);
-          osc.frequency.setValueAtTime(659.25, now + 0.08);
-          osc.frequency.setValueAtTime(783.99, now + 0.16);
-          gain.gain.setValueAtTime(0.06, now);
-          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
-          osc.start(now);
-          osc.stop(now + 0.25);
-        } else if (type === 'action') {
-          osc.type = 'sine';
-          osc.frequency.setValueAtTime(300, now);
-          osc.frequency.exponentialRampToValueAtTime(150, now + 0.1);
-          gain.gain.setValueAtTime(0.05, now);
-          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.1);
-          osc.start(now);
-          osc.stop(now + 0.1);
-        }
+        osc.start();
+        osc.stop(audioCtx.currentTime + duration);
       } catch (e) {
-        // Fallback gracefully if audio context fails
+        console.log("Audio play blocked");
       }
     }
 
     function toggleAudioSound() {
-      soundEnabled = !soundEnabled;
-      const soundIcon = document.getElementById('soundIcon');
+      audioEnabled = !audioEnabled;
       const soundText = document.getElementById('soundText');
-
-      if (soundEnabled) {
-        soundIcon.className = "fa-solid fa-volume-high text-neonCyan";
+      const soundIcon = document.getElementById('soundIcon');
+      if (audioEnabled) {
         soundText.innerText = "SFX: ON";
-        playSound('tab');
+        soundIcon.className = "fa-solid fa-volume-high text-neonCyan";
+        playBeep(600, 0.1, 'square');
       } else {
-        soundIcon.className = "fa-solid fa-volume-xmark text-slate-500";
         soundText.innerText = "SFX: OFF";
+        soundIcon.className = "fa-solid fa-volume-xmark text-slate-500";
       }
     }
 
-    // Tab Switcher Logic
+    // Tab Switcher
     const windowTitles = {
       'experience': 'module://work_experience.exe',
       'systems': 'module://systems_toolbelt.sys',
-      'writing': 'module://writing_and_design.vault',
-      'connect': 'module://connect_and_resume.exe'
+      'writing': 'module://writing_design.vault',
+      'connect': 'module://connect_resume.exe'
     };
 
     function switchTab(tabId) {
-      playSound('tab');
+      playBeep(520, 0.06, 'triangle');
+      
+      // Update window title
+      document.getElementById('windowTitle').innerText = windowTitles[tabId] || 'module://terminal.exe';
 
       // Hide all tabs
       document.querySelectorAll('.window-tab').forEach(tab => {
@@ -745,105 +720,83 @@
         tab.classList.remove('window-active');
       });
 
+      // Show target tab
+      const activeTab = document.getElementById(`tab-${tabId}`);
+      if (activeTab) {
+        activeTab.classList.remove('hidden');
+        activeTab.classList.add('window-active');
+      }
+
       // Reset button styles
       document.querySelectorAll('.tab-btn').forEach(btn => {
-        btn.classList.remove('border-neonCyan', 'border-neonPurple', 'border-neonPink', 'border-neonGold', 'glow-cyan', 'glow-purple', 'glow-pink');
+        btn.classList.remove('border-neonCyan', 'glow-cyan', 'border-neonPurple', 'border-neonPink', 'border-neonGold');
         btn.classList.add('border-cyberBorder');
       });
 
-      // Show target tab
-      const targetTab = document.getElementById(`tab-${tabId}`);
-      if (targetTab) {
-        targetTab.classList.remove('hidden');
-        targetTab.classList.add('window-active');
-      }
-
-      // Update Active Button Style
+      // Highlight active button
       const activeBtn = document.getElementById(`btn-${tabId}`);
       if (activeBtn) {
         activeBtn.classList.remove('border-cyberBorder');
         if (tabId === 'experience') activeBtn.classList.add('border-neonCyan', 'glow-cyan');
-        if (tabId === 'systems') activeBtn.classList.add('border-neonPurple', 'glow-purple');
-        if (tabId === 'writing') activeBtn.classList.add('border-neonPink', 'glow-pink');
+        if (tabId === 'systems') activeBtn.classList.add('border-neonPurple');
+        if (tabId === 'writing') activeBtn.classList.add('border-neonPink');
         if (tabId === 'connect') activeBtn.classList.add('border-neonGold');
-      }
-
-      // Update Window Header Title
-      const titleElem = document.getElementById('windowTitle');
-      if (titleElem) {
-        titleElem.innerText = windowTitles[tabId] || 'module://system.exe';
-      }
-
-      // Restore window body if minimized
-      const windowBody = document.getElementById('windowBody');
-      if (windowBody.style.display === 'none') {
-        windowBody.style.display = 'block';
       }
     }
 
-    // OS Window Controls (Close, Minimize, Maximize)
+    // Window Controls Simulation
     function closeCurrentWindow() {
-      playSound('action');
-      const windowBody = document.getElementById('windowBody');
-      windowBody.style.display = 'none';
+      playBeep(300, 0.1, 'sawtooth');
+      document.getElementById('windowBody').innerHTML = `
+        <div class="text-center py-16 space-y-3 font-mono">
+          <p class="text-neonPink font-bold">MODULE TERMINATED.</p>
+          <p class="text-xs text-slate-500">Select a module from the System Launchpad above to restart.</p>
+        </div>
+      `;
     }
 
     function minimizeWindow() {
-      playSound('action');
-      const windowBody = document.getElementById('windowBody');
-      windowBody.style.display = windowBody.style.display === 'none' ? 'block' : 'none';
+      playBeep(400, 0.08, 'sine');
+      const body = document.getElementById('windowBody');
+      body.classList.toggle('hidden');
     }
 
     function maximizeWindow() {
-      playSound('action');
-      const windowBody = document.getElementById('windowBody');
-      windowBody.style.display = 'block';
-      windowBody.classList.toggle('max-w-full');
+      playBeep(700, 0.08, 'sine');
+      const main = document.querySelector('main');
+      main.classList.toggle('max-w-6xl');
+      main.classList.toggle('max-w-full');
     }
 
-    // Copy Email Function
+    // Photo Upload Handler
+    function handlePhotoUpload(event) {
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          document.getElementById('userAvatar').src = e.target.result;
+          playBeep(880, 0.12, 'sine');
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+
+    // Copy Email to Clipboard
     function copyEmailToClipboard() {
-      playSound('copy');
-      const email = 'carriecuibaclayon@gmail.com';
-      
-      const textarea = document.createElement('textarea');
-      textarea.value = email;
-      document.body.appendChild(textarea);
-      textarea.select();
-      document.execCommand('copy');
-      document.body.removeChild(textarea);
-
-      const btnLabel = document.getElementById('copyBtnLabel');
-      const originalText = btnLabel.innerText;
-      btnLabel.innerText = 'COPIED TO CLIPBOARD!';
-      
-      setTimeout(() => {
-        btnLabel.innerText = originalText;
-      }, 2000);
+      const email = "carriecuibaclayon@gmail.com";
+      navigator.clipboard.writeText(email).then(() => {
+        playBeep(800, 0.1, 'sine');
+        const copyBtn = document.getElementById('copyBtn');
+        copyBtn.innerHTML = `<i class="fa-solid fa-check"></i> COPIED TO CLIPBOARD!`;
+        copyBtn.classList.replace('from-neonCyan', 'from-neonGreen');
+        setTimeout(() => {
+          copyBtn.innerHTML = `<i class="fa-solid fa-copy"></i> COPY EMAIL ADDRESS`;
+          copyBtn.classList.replace('from-neonGreen', 'from-neonCyan');
+        }, 2000);
+      });
     }
 
-    function triggerResumeNotification() {
-      playSound('action');
-      alert("Carrie Baclayon's official resume is available upon direct request via email. Click 'COPY EMAIL ADDRESS' to send a request!");
-    }
-
-    // Live Ticking Clock (Cebu City, GMT+8)
-    function updateClock() {
-      const now = new Date();
-      const options = {
-        timeZone: 'Asia/Manila',
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit',
-        hour12: false
-      };
-      const timeStr = new Intl.DateTimeFormat('en-US', options).format(now);
-      document.getElementById('liveClock').innerText = `${timeStr} PST`;
-    }
-    setInterval(updateClock, 1000);
-    updateClock();
-
-    // Interactive Canvas Background (Particle Starfield)
+    // Background Canvas Stars Effect
     const canvas = document.getElementById('bgCanvas');
     const ctx = canvas.getContext('2d');
 
@@ -854,35 +807,26 @@
     window.addEventListener('resize', resizeCanvas);
     resizeCanvas();
 
-    const particles = Array.from({ length: 90 }, () => ({
+    const stars = Array.from({ length: 90 }, () => ({
       x: Math.random() * canvas.width,
       y: Math.random() * canvas.height,
       size: Math.random() * 2,
-      speedY: Math.random() * 0.4 + 0.1,
-      opacity: Math.random() * 0.8 + 0.2
+      speed: Math.random() * 0.4 + 0.1
     }));
 
-    function animateCanvas() {
+    function animateStars() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = '#00dfd8';
 
-      particles.forEach(p => {
-        ctx.fillStyle = `rgba(0, 223, 216, ${p.opacity})`;
-        ctx.fillRect(p.x, p.y, p.size, p.size);
-
-        p.y -= p.speedY;
-        if (p.y < 0) {
-          p.y = canvas.height;
-          p.x = Math.random() * canvas.width;
-        }
+      stars.forEach(star => {
+        ctx.fillRect(star.x, star.y, star.size, star.size);
+        star.y -= star.speed;
+        if (star.y < 0) star.y = canvas.height;
       });
 
-      requestAnimationFrame(animateCanvas);
+      requestAnimationFrame(animateStars);
     }
-    
-    window.onload = function() {
-      animateCanvas();
-    };
+    animateStars();
   </script>
-
 </body>
 </html>
