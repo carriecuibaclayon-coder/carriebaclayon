@@ -175,23 +175,48 @@
       <div class="absolute -top-20 -right-20 w-64 h-64 bg-neonPurple/20 rounded-full blur-3xl pointer-events-none"></div>
       <div class="absolute -bottom-20 -left-20 w-64 h-64 bg-neonCyan/15 rounded-full blur-3xl pointer-events-none"></div>
 
-      <div class="relative z-10 grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
+      <div class="relative z-10 flex flex-col md:flex-row gap-8 items-center md:items-start text-center md:text-left">
         
-        <!-- Left Column: Details & Bio -->
-        <div class="md:col-span-9 space-y-4">
-          <!-- Role Badges -->
-          <div class="flex flex-wrap items-center gap-2">
-            <span class="text-[11px] font-mono font-bold px-2.5 py-0.5 rounded bg-neonPurple/20 text-purple-300 border border-neonPurple/40">
+        <!-- Left Column: Balanced Profile Photo & Role Badges -->
+        <div class="flex flex-col items-center md:items-start gap-4 flex-shrink-0">
+          
+          <!-- Optimized Photo Badge -->
+          <div class="relative">
+            <div class="w-24 h-24 md:w-28 md:h-28 rounded-2xl p-1 bg-gradient-to-br from-neonCyan via-neonPurple to-neonPink shadow-lg relative overflow-hidden">
+              <img 
+                id="userAvatar"
+                src="profile.jpg" 
+                alt="Carrie Baclayon" 
+                class="w-full h-full object-cover rounded-xl bg-cyberCard"
+                onerror="this.onerror=null; this.src='https://placehold.co/200x200/141622/ffffff?text=Carrie';"
+              >
+            </div>
+
+            <!-- Live Status Indicator -->
+            <div class="absolute -top-1 -right-1 bg-cyberCard border border-cyberBorder px-2 py-0.5 rounded-full shadow-md flex items-center gap-1.5" title="Available / Online">
+              <span class="w-2 h-2 rounded-full bg-neonGreen animate-pulse block"></span>
+              <span class="text-[9px] font-mono text-neonGreen font-bold">ONLINE</span>
+            </div>
+          </div>
+
+          <!-- Role Badges (Stacked on desktop for clean layout) -->
+          <div class="flex flex-col gap-1.5 w-full items-center md:items-start">
+            <span class="text-[10px] font-mono font-bold px-2.5 py-1 rounded bg-neonPurple/20 text-purple-300 border border-neonPurple/40 w-full text-center md:text-left">
               OPERATIONS & EXECUTIVE VA
             </span>
-            <span class="text-[11px] font-mono font-bold px-2.5 py-0.5 rounded bg-neonCyan/10 text-neonCyan border border-neonCyan/30">
+            <span class="text-[10px] font-mono font-bold px-2.5 py-1 rounded bg-neonCyan/10 text-neonCyan border border-neonCyan/30 w-full text-center md:text-left">
               LICENSED TEACHER (LPT)
             </span>
-            <span class="text-[11px] font-mono font-bold px-2.5 py-0.5 rounded bg-neonPink/10 text-pink-300 border border-neonPink/30">
+            <span class="text-[10px] font-mono font-bold px-2.5 py-1 rounded bg-neonPink/10 text-pink-300 border border-neonPink/30 w-full text-center md:text-left">
               SUBSTACK WRITER
             </span>
           </div>
 
+        </div>
+
+        <!-- Right Column: Name, Bio, Quote, and Quick Specs -->
+        <div class="space-y-4 flex-grow">
+          
           <h1 class="font-pixel text-3xl md:text-5xl font-bold text-white tracking-wide">
             CARRIE BACLAYON
           </h1>
@@ -225,27 +250,7 @@
               </div>
             </div>
           </div>
-        </div>
 
-        <!-- Right Column: Balanced Profile Photo Badge -->
-        <div class="md:col-span-3 flex flex-col items-center justify-center">
-          <div class="relative group">
-            <div class="w-28 h-28 md:w-36 md:h-36 rounded-2xl p-1 bg-gradient-to-br from-neonCyan via-neonPurple to-neonPink shadow-xl relative overflow-hidden">
-              <img 
-                id="userAvatar"
-                src="profile.jpg" 
-                alt="Carrie Baclayon" 
-                class="w-full h-full object-cover rounded-xl bg-cyberCard"
-                onerror="this.onerror=null; this.src='https://placehold.co/300x300/141622/ffffff?text=Carrie';"
-              >
-            </div>
-
-            <!-- Live Status Indicator -->
-            <div class="absolute -top-1 -right-1 bg-cyberCard border border-cyberBorder px-2.5 py-0.5 rounded-full shadow-md flex items-center gap-1.5">
-              <span class="w-2 h-2 rounded-full bg-neonGreen animate-pulse"></span>
-              <span class="text-[9px] font-mono text-neonGreen font-semibold">ONLINE</span>
-            </div>
-          </div>
         </div>
 
       </div>
@@ -769,3 +774,39 @@
           copyBtn.classList.replace('from-neonGreen', 'from-neonCyan');
         }, 2000);
       });
+    }
+
+    // Background Canvas Stars Effect
+    const canvas = document.getElementById('bgCanvas');
+    const ctx = canvas.getContext('2d');
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    const stars = Array.from({ length: 90 }, () => ({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      size: Math.random() * 2,
+      speed: Math.random() * 0.4 + 0.1
+    }));
+
+    function animateStars() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = '#00dfd8';
+
+      stars.forEach(star => {
+        ctx.fillRect(star.x, star.y, star.size, star.size);
+        star.y -= star.speed;
+        if (star.y < 0) star.y = canvas.height;
+      });
+
+      requestAnimationFrame(animateStars);
+    }
+    animateStars();
+  </script>
+</body>
+</html>
