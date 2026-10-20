@@ -537,7 +537,7 @@
             </div>
           </div>
 
-          <!-- Canva Design Showcases with Active Outbound Links & Image Thumbnails -->
+          <!-- Canva Design Showcases with Fixed Thumbnail Containers -->
           <div class="space-y-3 pt-2">
             <span class="font-mono text-xs text-neonCyan font-bold uppercase tracking-wider block">CANVA BRAND DESIGN PROJECTS</span>
             
@@ -545,8 +545,9 @@
               
               <!-- Design 1: Luna Haven Co. -->
               <div class="bg-cyberHeader/60 border border-cyberBorder hover:border-neonCyan rounded-xl overflow-hidden p-4 flex gap-4 items-center transition-all group">
-                <div class="w-20 h-20 rounded-lg overflow-hidden flex-shrink-0 border border-neonCyan/40 bg-cyberCard relative">
-                  <img src="./luna-haven.jpg" alt="Luna Haven Co." class="w-full h-full object-cover group-hover:scale-105 transition-transform">
+                <!-- Thumbnail Box with explicit w-20 h-20 flex-shrink-0 -->
+                <div class="w-20 h-20 min-w-[80px] min-h-[80px] rounded-lg overflow-hidden flex-shrink-0 border border-neonCyan/40 bg-cyberCard relative">
+                  <img src="./luna-haven.jpg" alt="Luna Haven Co." class="w-full h-full object-cover group-hover:scale-105 transition-transform" onerror="this.onerror=null; this.src='https://placehold.co/150x150/141622/ffffff?text=Luna';">
                 </div>
                 <div class="space-y-1 flex-grow">
                   <h5 class="font-bold text-sm text-white group-hover:text-neonCyan transition-colors">
@@ -564,8 +565,9 @@
 
               <!-- Design 2: Sunbaked Coffee Lab -->
               <div class="bg-cyberHeader/60 border border-cyberBorder hover:border-neonGold rounded-xl overflow-hidden p-4 flex gap-4 items-center transition-all group">
-                <div class="w-20 h-20 rounded-lg overflow-hidden flex-shrink-0 border border-neonGold/40 bg-cyberCard relative">
-                  <img src="./sunbaked.jpg" alt="Sunbaked Coffee Lab" class="w-full h-full object-cover group-hover:scale-105 transition-transform">
+                <!-- Thumbnail Box with explicit w-20 h-20 flex-shrink-0 -->
+                <div class="w-20 h-20 min-w-[80px] min-h-[80px] rounded-lg overflow-hidden flex-shrink-0 border border-neonGold/40 bg-cyberCard relative">
+                  <img src="./sunbaked.jpg" alt="Sunbaked Coffee Lab" class="w-full h-full object-cover group-hover:scale-105 transition-transform" onerror="this.onerror=null; this.src='https://placehold.co/150x150/141622/ffffff?text=Sunbaked';">
                 </div>
                 <div class="space-y-1 flex-grow">
                   <h5 class="font-bold text-sm text-white group-hover:text-neonGold transition-colors">
