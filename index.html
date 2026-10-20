@@ -537,7 +537,7 @@
             </div>
           </div>
 
-          <!-- Canva Design Showcases with Exact Filenames & Links -->
+          <!-- Canva Design Showcases with Smart Image Fallback Chain -->
           <div class="space-y-3 pt-2">
             <span class="font-mono text-xs text-neonCyan font-bold uppercase tracking-wider block">CANVA BRAND DESIGN PROJECTS</span>
             
@@ -545,8 +545,8 @@
               
               <!-- Design 1: Luna Haven Co. -->
               <div class="bg-cyberHeader/60 border border-cyberBorder hover:border-neonCyan rounded-xl overflow-hidden p-4 flex gap-4 items-center transition-all group">
-                <div class="w-20 h-20 min-w-[80px] min-h-[80px] rounded-lg overflow-hidden flex-shrink-0 border border-neonCyan/40 bg-cyberCard relative">
-                  <img src="./luna-haven.jpg" alt="Luna Haven Co." class="w-full h-full object-cover group-hover:scale-105 transition-transform">
+                <div class="w-20 h-20 min-w-[80px] min-h-[80px] rounded-lg overflow-hidden flex-shrink-0 border border-neonCyan/40 bg-cyberCard relative flex items-center justify-center">
+                  <img src="./luna-haven.jpg" alt="Luna Haven Co." class="w-full h-full object-cover group-hover:scale-105 transition-transform" onerror="if(this.src.includes('luna-haven.jpg')) { this.src='./luna-haven.png'; } else { this.src='https://placehold.co/150x150/141622/00dfd8?text=Luna'; }">
                 </div>
                 <div class="space-y-1 flex-grow">
                   <h5 class="font-bold text-sm text-white group-hover:text-neonCyan transition-colors">
@@ -564,8 +564,8 @@
 
               <!-- Design 2: Sunbaked Coffee Lab -->
               <div class="bg-cyberHeader/60 border border-cyberBorder hover:border-neonGold rounded-xl overflow-hidden p-4 flex gap-4 items-center transition-all group">
-                <div class="w-20 h-20 min-w-[80px] min-h-[80px] rounded-lg overflow-hidden flex-shrink-0 border border-neonGold/40 bg-cyberCard relative">
-                  <img src="./sunbaked.jpg" alt="Sunbaked Coffee Lab" class="w-full h-full object-cover group-hover:scale-105 transition-transform">
+                <div class="w-20 h-20 min-w-[80px] min-h-[80px] rounded-lg overflow-hidden flex-shrink-0 border border-neonGold/40 bg-cyberCard relative flex items-center justify-center">
+                  <img src="./sunbaked.jpg" alt="Sunbaked Coffee Lab" class="w-full h-full object-cover group-hover:scale-105 transition-transform" onerror="if(this.src.includes('sunbaked.jpg')) { this.src='./sunbaked.png'; } else if(this.src.includes('sunbaked.png')) { this.src='./images/sunbaked.jpg'; } else { this.src='https://placehold.co/150x150/141622/ffd700?text=Sunbaked'; }">
                 </div>
                 <div class="space-y-1 flex-grow">
                   <h5 class="font-bold text-sm text-white group-hover:text-neonGold transition-colors">
