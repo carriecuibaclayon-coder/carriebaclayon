@@ -175,59 +175,58 @@
       <div class="absolute -top-20 -right-20 w-64 h-64 bg-neonPurple/20 rounded-full blur-3xl pointer-events-none"></div>
       <div class="absolute -bottom-20 -left-20 w-64 h-64 bg-neonCyan/15 rounded-full blur-3xl pointer-events-none"></div>
 
-      <div class="relative z-10 flex flex-col md:flex-row gap-6 items-center md:items-start text-center md:text-left">
+      <div class="relative z-10 flex flex-col space-y-4">
         
-        <!-- Avatar Wrapper -->
-        <div class="relative group flex-shrink-0 flex flex-col items-center">
-          <div class="relative w-32 h-32 rounded-2xl p-1 bg-gradient-to-br from-neonCyan via-neonPurple to-neonPink shadow-lg group">
-            <img 
-              id="userAvatar"
-              src="profile.jpg" 
-              alt="Carrie Baclayon" 
-              class="w-full h-full object-cover rounded-xl bg-cyberCard"
-              onerror="this.onerror=null; this.src='https://placehold.co/300x300/141622/ffffff?text=Carrie+B.';"
-            >
-            <!-- Hover Overlay for Upload -->
-            <label for="avatarUpload" class="absolute inset-0 bg-black/60 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center cursor-pointer text-white text-[10px] font-mono gap-1">
-              <i class="fa-solid fa-camera text-neonCyan text-base"></i>
-              <span>CHANGE PHOTO</span>
-            </label>
-          </div>
+        <!-- Role Badges -->
+        <div class="flex flex-wrap items-center gap-2">
+          <span class="text-[11px] font-mono font-bold px-2.5 py-0.5 rounded bg-neonPurple/20 text-purple-300 border border-neonPurple/40">
+            OPERATIONS & EXECUTIVE VA
+          </span>
+          <span class="text-[11px] font-mono font-bold px-2.5 py-0.5 rounded bg-neonCyan/10 text-neonCyan border border-neonCyan/30">
+            LICENSED TEACHER (LPT)
+          </span>
+          <span class="text-[11px] font-mono font-bold px-2.5 py-0.5 rounded bg-neonPink/10 text-pink-300 border border-neonPink/30">
+            SUBSTACK WRITER
+          </span>
+        </div>
+
+        <!-- Name with Small Compact Photo Beside It -->
+        <div class="flex items-center gap-4 flex-wrap">
           
+          <!-- Small Avatar Badge -->
+          <div class="relative group flex-shrink-0">
+            <div class="w-14 h-14 md:w-16 md:h-16 rounded-xl p-0.5 bg-gradient-to-br from-neonCyan via-neonPurple to-neonPink shadow-md relative overflow-hidden">
+              <img 
+                id="userAvatar"
+                src="profile.jpg" 
+                alt="Carrie Baclayon" 
+                class="w-full h-full object-cover rounded-lg bg-cyberCard"
+                onerror="this.onerror=null; this.src='https://placehold.co/150x150/141622/ffffff?text=Carrie';"
+              >
+              <!-- Hover Overlay for Upload -->
+              <label for="avatarUpload" class="absolute inset-0 bg-black/75 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center cursor-pointer text-white text-[9px] font-mono gap-0.5">
+                <i class="fa-solid fa-camera text-neonCyan text-xs"></i>
+                <span>EDIT</span>
+              </label>
+            </div>
+
+            <!-- Live Status Indicator -->
+            <div class="absolute -top-1 -right-1 bg-cyberCard border border-cyberBorder p-0.5 rounded-full shadow-md" title="Available / Online">
+              <span class="w-2 h-2 rounded-full bg-neonGreen animate-pulse block"></span>
+            </div>
+          </div>
+
           <!-- Hidden File Input -->
           <input type="file" id="avatarUpload" accept="image/*" class="hidden" onchange="handlePhotoUpload(event)">
 
-          <!-- Live Status Indicator -->
-          <div class="absolute -top-2 -right-2 bg-cyberCard border border-cyberBorder px-2.5 py-0.5 rounded-full flex items-center gap-1.5 shadow-md">
-            <span class="w-2.5 h-2.5 rounded-full bg-neonGreen animate-pulse"></span>
-            <span class="text-[10px] font-mono text-neonGreen font-semibold">ONLINE</span>
-          </div>
-
-          <!-- Explicit Upload Button below Avatar -->
-          <label for="avatarUpload" class="mt-2.5 inline-flex items-center gap-1.5 px-2.5 py-1 bg-cyberHeader hover:bg-cyberBorder border border-neonCyan/50 text-neonCyan rounded font-mono text-[10px] cursor-pointer transition-colors shadow">
-            <i class="fa-solid fa-upload"></i> Upload Photo
-          </label>
-        </div>
-
-        <!-- Bio & Quick Specs -->
-        <div class="space-y-3 flex-grow">
-          
-          <div class="flex flex-wrap items-center justify-center md:justify-start gap-2">
-            <span class="text-[11px] font-mono font-bold px-2.5 py-0.5 rounded bg-neonPurple/20 text-purple-300 border border-neonPurple/40">
-              OPERATIONS & EXECUTIVE VA
-            </span>
-            <span class="text-[11px] font-mono font-bold px-2.5 py-0.5 rounded bg-neonCyan/10 text-neonCyan border border-neonCyan/30">
-              LICENSED TEACHER (LPT)
-            </span>
-            <span class="text-[11px] font-mono font-bold px-2.5 py-0.5 rounded bg-neonPink/10 text-pink-300 border border-neonPink/30">
-              SUBSTACK WRITER
-            </span>
-          </div>
-
+          <!-- Main Name Heading -->
           <h1 class="font-pixel text-3xl md:text-5xl font-bold text-white tracking-wide">
             CARRIE BACLAYON
           </h1>
+        </div>
 
+        <!-- Bio & Quick Specs -->
+        <div class="space-y-3">
           <p class="text-sm md:text-base text-slate-300 font-medium max-w-2xl">
             Operations Team Lead & Executive Virtual Assistant with 5+ years driving healthcare revenue cycle management, SLA compliance, and multi-provider administrative workflows.
           </p>
@@ -241,7 +240,7 @@
           </div>
 
           <!-- Dual-Mode Quick Specs Grid -->
-          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 text-xs font-mono">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 text-xs font-mono max-w-2xl">
             <div class="bg-cyberHeader/60 border border-cyberBorder p-2.5 rounded-lg flex items-center gap-2.5">
               <i class="fa-solid fa-sun text-neonGold text-base"></i>
               <div>
