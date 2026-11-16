@@ -108,6 +108,10 @@
       animation: windowOpen 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
+    .window-tab {
+      display: none;
+    }
+
     @keyframes windowOpen {
       from {
         opacity: 0;
@@ -188,6 +192,7 @@
                 src="./profile.jpg" 
                 alt="Carrie Baclayon" 
                 class="w-full h-full object-cover rounded-xl bg-cyberCard"
+                onerror="this.src='https://placehold.co/150x150/141622/00dfd8?text=CB'"
               >
             </div>
 
@@ -207,7 +212,7 @@
               LICENSED TEACHER (LPT)
             </span>
             <span class="text-[10px] font-mono font-bold px-2.5 py-1 rounded bg-neonPink/10 text-pink-300 border border-neonPink/30 w-full text-center md:text-left">
-              SUBSTACK WRITER
+              BOOK COVER DESIGNER
             </span>
           </div>
 
@@ -245,7 +250,7 @@
               <i class="fa-solid fa-moon text-neonPurple text-base"></i>
               <div>
                 <span class="text-slate-400 block text-[10px]">AFTER HOURS</span>
-                <span class="text-slate-200 font-semibold">Substack Writer & Canva Designer</span>
+                <span class="text-slate-200 font-semibold">Substack Writer & Cover Designer</span>
               </div>
             </div>
           </div>
@@ -255,7 +260,7 @@
       </div>
     </section>
 
-    <!-- ================= INTERACTIVE LAUNCHPAD NAV GRID ================= -->
+    <!-- ================= INTERACTIVE LAUNCHPAD NAV GRID (5 TABS) ================= -->
     <section>
       <div class="flex justify-between items-center mb-3">
         <h2 class="font-pixel text-lg text-neonCyan font-bold tracking-wider flex items-center gap-2">
@@ -264,7 +269,7 @@
         <span class="text-xs font-mono text-slate-500">SELECT MODULE TO RUN</span>
       </div>
 
-      <nav class="grid grid-cols-2 md:grid-cols-4 gap-3">
+      <nav class="grid grid-cols-2 md:grid-cols-5 gap-3">
         
         <!-- Tab Button 1 -->
         <button 
@@ -295,19 +300,30 @@
           class="tab-btn bg-cyberCard border-2 border-cyberBorder hover:border-neonPink p-4 rounded-xl flex flex-col items-center gap-2 text-center transition-all cursor-pointer group"
         >
           <span class="text-2xl text-neonPink group-hover:scale-110 transition-transform"><i class="fa-solid fa-pen-nib"></i></span>
-          <span class="font-pixel text-sm font-bold text-white tracking-wider">3. WRITING & DESIGN</span>
-          <span class="text-[10px] font-mono text-slate-400">Substack / Canva</span>
+          <span class="font-pixel text-sm font-bold text-white tracking-wider">3. WRITING</span>
+          <span class="text-[10px] font-mono text-slate-400">Substack Essays</span>
         </button>
 
         <!-- Tab Button 4 -->
         <button 
+          onclick="switchTab('bookcovers')" 
+          id="btn-bookcovers"
+          class="tab-btn bg-cyberCard border-2 border-cyberBorder hover:border-neonPink p-4 rounded-xl flex flex-col items-center gap-2 text-center transition-all cursor-pointer group"
+        >
+          <span class="text-2xl text-neonPink group-hover:scale-110 transition-transform"><i class="fa-solid fa-book-open"></i></span>
+          <span class="font-pixel text-sm font-bold text-white tracking-wider">4. BOOK COVERS</span>
+          <span class="text-[10px] font-mono text-slate-400">Romance & Literary</span>
+        </button>
+
+        <!-- Tab Button 5 -->
+        <button 
           onclick="switchTab('connect')" 
           id="btn-connect"
-          class="tab-btn bg-cyberCard border-2 border-cyberBorder hover:border-neonGold p-4 rounded-xl flex flex-col items-center gap-2 text-center transition-all cursor-pointer group"
+          class="tab-btn bg-cyberCard border-2 border-cyberBorder hover:border-neonGold p-4 rounded-xl flex flex-col items-center gap-2 text-center transition-all cursor-pointer group col-span-2 md:col-span-1"
         >
           <span class="text-2xl text-neonGold group-hover:scale-110 transition-transform"><i class="fa-solid fa-paper-plane"></i></span>
-          <span class="font-pixel text-sm font-bold text-white tracking-wider">4. CONNECT</span>
-          <span class="text-[10px] font-mono text-slate-400">Email & Socials</span>
+          <span class="font-pixel text-sm font-bold text-white tracking-wider">5. CONNECT</span>
+          <span class="text-[10px] font-mono text-slate-400">Email & Inquiries</span>
         </button>
 
       </nav>
@@ -363,7 +379,6 @@
                 <li>Conduct regular quality audits, complex EOB reconciliation, and insurance pre-authorization workflows.</li>
                 <li>Direct team performance coaching, reducing claims denial turnaround times and escalating high-priority patient balances.</li>
                 <li>Specializing in high-ticket DM setting, lead qualification, and end-to-end appointment pipeline management to scale outreach efficiently.</li>
-
               </ul>
             </div>
 
@@ -421,7 +436,6 @@
                 <span class="bg-cyberCard border border-neonCyan/40 text-neonCyan px-2.5 py-1 rounded">Open Dental</span>
                 <span class="bg-cyberCard border border-neonCyan/40 text-neonCyan px-2.5 py-1 rounded">Carestack</span>
                 <span class="bg-cyberCard border border-neonCyan/40 text-neonCyan px-2.5 py-1 rounded">Practice-Web</span>
-                <span class="bg-cyberCard border border-neonCyan/40 text-neonCyan px-2.5 py-1 rounded">Echart</span>
                 <span class="bg-cyberCard border border-neonCyan/40 text-neonCyan px-2.5 py-1 rounded">EOB Reconciliation</span>
               </div>
             </div>
@@ -429,7 +443,7 @@
             <!-- Category 2 -->
             <div class="bg-cyberHeader/60 border border-cyberBorder p-5 rounded-xl space-y-3">
               <div class="flex items-center gap-2 text-neonPurple font-mono font-bold text-sm">
-                <i class="fa-solid fa-headset"></i> ENTERPRISE CRM & ESCALATIONS
+                <i class="fa-solid fa-headset"></i> CRM & ESCALATIONS
               </div>
               <div class="flex flex-wrap gap-1.5 text-xs font-mono">
                 <span class="bg-cyberCard border border-purple-400/40 text-purple-300 px-2.5 py-1 rounded">Salesforce</span>
@@ -443,222 +457,250 @@
             <!-- Category 3 -->
             <div class="bg-cyberHeader/60 border border-cyberBorder p-5 rounded-xl space-y-3">
               <div class="flex items-center gap-2 text-neonPink font-mono font-bold text-sm">
-                <i class="fa-solid fa-paperclip"></i> ADMIN & CREATIVE SUITE
+                <i class="fa-solid fa-paperclip"></i> ADMIN & DESIGN
               </div>
               <div class="flex flex-wrap gap-1.5 text-xs font-mono">
                 <span class="bg-cyberCard border border-pink-400/40 text-pink-300 px-2.5 py-1 rounded">MS Excel (Pivots)</span>
                 <span class="bg-cyberCard border border-pink-400/40 text-pink-300 px-2.5 py-1 rounded">Google Workspace</span>
                 <span class="bg-cyberCard border border-pink-400/40 text-pink-300 px-2.5 py-1 rounded">Substack Editor</span>
-                <span class="bg-cyberCard border border-pink-400/40 text-pink-300 px-2.5 py-1 rounded">Canva Brand Design</span>
-                <span class="bg-cyberCard border border-pink-400/40 text-pink-300 px-2.5 py-1 rounded">Slack / Teams</span>
+                <span class="bg-cyberCard border border-pink-400/40 text-pink-300 px-2.5 py-1 rounded">Canva Design Suite</span>
               </div>
             </div>
 
-            <!-- Category 4: Appointment Setting & DM Pipeline Management -->
-            <div class="bg-cyberHeader/60 border border-cyberBorder p-5 rounded-xl space-y-3 md:col-span-3">
-              <div class="flex items-center gap-2 text-neonGold font-mono font-bold text-sm">
-                <i class="fa-solid fa-calendar-check"></i> APPOINTMENT SETTING & DM PIPELINE MANAGEMENT
-              </div>
-              <p class="text-xs text-slate-300 font-sans pb-1">
-                Driving outbound client acquisition, qualifying inbound leads via social DMs, and managing high-conversion booking pipelines.
-              </p>
-              <div class="flex flex-wrap gap-1.5 text-xs font-mono">
-                <span class="bg-cyberCard border border-neonGold/40 text-neonGold px-2.5 py-1 rounded">High-Ticket DM Setting</span>
-                <span class="bg-cyberCard border border-neonGold/40 text-neonGold px-2.5 py-1 rounded">Lead Qualification</span>
-                <span class="bg-cyberCard border border-neonGold/40 text-neonGold px-2.5 py-1 rounded">Calendly / Acuity Scheduling</span>
-                <span class="bg-cyberCard border border-neonGold/40 text-neonGold px-2.5 py-1 rounded">CRM Pipeline Tracking</span>
-                <span class="bg-cyberCard border border-neonGold/40 text-neonGold px-2.5 py-1 rounded">Cold & Warm Outreach</span>
-                <span class="bg-cyberCard border border-neonGold/40 text-neonGold px-2.5 py-1 rounded">Follow-Up Sequencing</span>
-              </div>
-            </div>
-
-          </div>
-
-          <!-- Academic Honors Banner -->
-          <div class="bg-gradient-to-r from-neonPurple/20 via-cyberHeader to-neonCyan/20 border border-cyberBorder p-4 rounded-xl flex flex-col sm:flex-row justify-between items-center gap-3 text-xs">
-            <div class="space-y-1">
-              <span class="font-mono text-neonGold font-bold flex items-center gap-1.5">
-                <i class="fa-solid fa-award"></i> LICENSED PROFESSIONAL TEACHER (LPT)
-              </span>
-              <p class="text-slate-300">Bachelor of Early Childhood Education • <strong>Cum Laude</strong> (Cebu Normal University)</p>
-            </div>
-            <span class="font-mono text-[11px] bg-cyberCard px-3 py-1.5 rounded border border-cyberBorder text-slate-400">
-              ACADEMIC EXCELLENCE AWARD
-            </span>
           </div>
         </div>
 
-        <!-- ================= TAB 3: WRITING & DESIGN ================= -->
+        <!-- ================= TAB 3: WRITING ================= -->
         <div id="tab-writing" class="window-tab hidden space-y-6">
           <div class="border-b border-cyberBorder pb-4 flex justify-between items-end">
             <div>
-              <h3 class="font-pixel text-2xl text-neonPink font-bold">WRITING_&_DESIGN.VAULT</h3>
-              <p class="text-xs font-mono text-slate-400">Creative storytelling on Substack (@hellokieri) and Canva visual design work.</p>
+              <h3 class="font-pixel text-2xl text-neonPink font-bold">WRITING_VAULT.LOG</h3>
+              <p class="text-xs font-mono text-slate-400">Creative storytelling and personal essays on Substack (@hellokieri).</p>
             </div>
             <a href="https://hellokieri.substack.com/" target="_blank" class="text-xs font-mono text-neonPink hover:underline flex items-center gap-1">
               SUBSTACK <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
             </a>
           </div>
 
-          <!-- Substack Highlights Grid -->
-          <div class="space-y-3">
-            <span class="font-mono text-xs text-neonGold font-bold uppercase tracking-wider block">FEATURED ESSAYS</span>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
             
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-              
-              <!-- Essay 1 -->
-              <a href="https://hellokieri.substack.com/" target="_blank" class="group bg-cyberHeader/60 border border-cyberBorder hover:border-neonPink p-4 rounded-xl space-y-2.5 transition-all flex flex-col justify-between">
-                <div class="space-y-1.5">
-                  <span class="text-[10px] font-mono text-slate-500">ESSAY // SEP 2026</span>
-                  <h4 class="font-bold text-sm text-white group-hover:text-neonPink transition-colors">
-                    "who am i if i don't feel my emotions too deeply?"
-                  </h4>
-                  <p class="text-xs text-slate-400 line-clamp-3">
-                    Reflections on emotional vulnerability, personal depth, and finding quiet meaning in daily life.
-                  </p>
-                </div>
-                <span class="text-[11px] font-mono text-neonPink flex items-center gap-1 pt-2">
-                  Read Essay <i class="fa-solid fa-arrow-right text-[10px]"></i>
-                </span>
-              </a>
-
-              <!-- Essay 2 -->
-              <a href="https://hellokieri.substack.com/" target="_blank" class="group bg-cyberHeader/60 border border-cyberBorder hover:border-neonPink p-4 rounded-xl space-y-2.5 transition-all flex flex-col justify-between">
-                <div class="space-y-1.5">
-                  <span class="text-[10px] font-mono text-slate-500">REFLECTION // SEP 2026</span>
-                  <h4 class="font-bold text-sm text-white group-hover:text-neonPink transition-colors">
-                    "in case you need a gentle reminder..."
-                  </h4>
-                  <p class="text-xs text-slate-400 line-clamp-3">
-                    Notes on self-compassion, reclaiming inner calm, and navigating busy days with grace.
-                  </p>
-                </div>
-                <span class="text-[11px] font-mono text-neonPink flex items-center gap-1 pt-2">
-                  Read Essay <i class="fa-solid fa-arrow-right text-[10px]"></i>
-                </span>
-              </a>
-
-              <!-- Essay 3 -->
-              <a href="https://hellokieri.substack.com/" target="_blank" class="group bg-cyberHeader/60 border border-cyberBorder hover:border-neonPink p-4 rounded-xl space-y-2.5 transition-all flex flex-col justify-between">
-                <div class="space-y-1.5">
-                  <span class="text-[10px] font-mono text-slate-500">ESSAY // AUG 2026</span>
-                  <h4 class="font-bold text-sm text-white group-hover:text-neonPink transition-colors">
-                    "one day more"
-                  </h4>
-                  <p class="text-xs text-slate-400 line-clamp-3">
-                    On transitions, small daily rituals, and taking life chapter by chapter.
-                  </p>
-                </div>
-                <span class="text-[11px] font-mono text-neonPink flex items-center gap-1 pt-2">
-                  Read Essay <i class="fa-solid fa-arrow-right text-[10px]"></i>
-                </span>
-              </a>
-
-            </div>
-          </div>
-
-          <!-- Canva Design Showcases with Smart Image Fallback Chain -->
-          <div class="space-y-3 pt-2">
-            <span class="font-mono text-xs text-neonCyan font-bold uppercase tracking-wider block">CANVA BRAND DESIGN PROJECTS</span>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-              
-              <!-- Design 1: Luna Haven Co. -->
-              <div class="bg-cyberHeader/60 border border-cyberBorder hover:border-neonCyan rounded-xl overflow-hidden p-4 flex gap-4 items-center transition-all group">
-                <div class="w-20 h-20 min-w-[80px] min-h-[80px] rounded-lg overflow-hidden flex-shrink-0 border border-neonCyan/40 bg-cyberCard relative flex items-center justify-center">
-                  <img src="./luna-haven.jpg" alt="Luna Haven Co." class="w-full h-full object-cover group-hover:scale-105 transition-transform" onerror="if(this.src.includes('luna-haven.jpg')) { this.src='./luna-haven.png'; } else { this.src='https://placehold.co/150x150/141622/00dfd8?text=Luna'; }">
-                </div>
-                <div class="space-y-1 flex-grow">
-                  <h5 class="font-bold text-sm text-white group-hover:text-neonCyan transition-colors">
-                    Luna Haven Co.
-                  </h5>
-                  <p class="text-xs text-slate-400">Cozy brand identity, Instagram mood boards, and aesthetic typography palettes created in Canva.</p>
-                  <div class="flex items-center justify-between pt-2">
-                    <span class="text-[10px] font-mono text-neonCyan bg-neonCyan/10 px-2 py-0.5 rounded">Brand Identity</span>
-                    <a href="https://canva.link/luna-haven-carrie-baclayon" target="_blank" rel="noopener noreferrer" class="text-[11px] font-mono text-neonCyan hover:underline font-bold flex items-center gap-1">
-                      CANVA PROJECT <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>
-                    </a>
-                  </div>
-                </div>
+            <a href="https://hellokieri.substack.com/" target="_blank" class="group bg-cyberHeader/60 border border-cyberBorder hover:border-neonPink p-4 rounded-xl space-y-2.5 transition-all flex flex-col justify-between">
+              <div class="space-y-1.5">
+                <span class="text-[10px] font-mono text-slate-500">ESSAY // SEP 2026</span>
+                <h4 class="font-bold text-sm text-white group-hover:text-neonPink transition-colors">
+                  "who am i if i don't feel my emotions too deeply?"
+                </h4>
+                <p class="text-xs text-slate-400 line-clamp-3">
+                  Reflections on emotional vulnerability, personal depth, and finding quiet meaning in daily life.
+                </p>
               </div>
+              <span class="text-[11px] font-mono text-neonPink flex items-center gap-1 pt-2">
+                Read Essay <i class="fa-solid fa-arrow-right text-[10px]"></i>
+              </span>
+            </a>
 
-              <!-- Design 2: Sunbaked Coffee Lab -->
-              <div class="bg-cyberHeader/60 border border-cyberBorder hover:border-neonGold rounded-xl overflow-hidden p-4 flex gap-4 items-center transition-all group">
-                <div class="w-20 h-20 min-w-[80px] min-h-[80px] rounded-lg overflow-hidden flex-shrink-0 border border-neonGold/40 bg-cyberCard relative flex items-center justify-center">
-                  <img src="./sunbaked.jpg" alt="Sunbaked Coffee Lab" class="w-full h-full object-cover group-hover:scale-105 transition-transform" onerror="if(this.src.includes('sunbaked.jpg')) { this.src='./sunbaked.png'; } else if(this.src.includes('sunbaked.png')) { this.src='./images/sunbaked.jpg'; } else { this.src='https://placehold.co/150x150/141622/ffd700?text=Sunbaked'; }">
-                </div>
-                <div class="space-y-1 flex-grow">
-                  <h5 class="font-bold text-sm text-white group-hover:text-neonGold transition-colors">
-                    Sunbaked Coffee Lab
-                  </h5>
-                  <p class="text-xs text-slate-400">Warm artisanal menu assets, social media promotional collateral, and color storyboards.</p>
-                  <div class="flex items-center justify-between pt-2">
-                    <span class="text-[10px] font-mono text-neonGold bg-neonGold/10 px-2 py-0.5 rounded">Social Collateral</span>
-                    <a href="https://canva.link/sunbaked-coffee-lab" target="_blank" rel="noopener noreferrer" class="text-[11px] font-mono text-neonGold hover:underline font-bold flex items-center gap-1">
-                      CANVA PROJECT <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>
-                    </a>
-                  </div>
-                </div>
+            <a href="https://hellokieri.substack.com/" target="_blank" class="group bg-cyberHeader/60 border border-cyberBorder hover:border-neonPink p-4 rounded-xl space-y-2.5 transition-all flex flex-col justify-between">
+              <div class="space-y-1.5">
+                <span class="text-[10px] font-mono text-slate-500">REFLECTION // SEP 2026</span>
+                <h4 class="font-bold text-sm text-white group-hover:text-neonPink transition-colors">
+                  "in case you need a gentle reminder..."
+                </h4>
+                <p class="text-xs text-slate-400 line-clamp-3">
+                  Notes on self-compassion, reclaiming inner calm, and navigating busy days with grace.
+                </p>
               </div>
+              <span class="text-[11px] font-mono text-neonPink flex items-center gap-1 pt-2">
+                Read Essay <i class="fa-solid fa-arrow-right text-[10px]"></i>
+              </span>
+            </a>
 
-            </div>
+            <a href="https://hellokieri.substack.com/" target="_blank" class="group bg-cyberHeader/60 border border-cyberBorder hover:border-neonPink p-4 rounded-xl space-y-2.5 transition-all flex flex-col justify-between">
+              <div class="space-y-1.5">
+                <span class="text-[10px] font-mono text-slate-500">ESSAY // AUG 2026</span>
+                <h4 class="font-bold text-sm text-white group-hover:text-neonPink transition-colors">
+                  "one day more"
+                </h4>
+                <p class="text-xs text-slate-400 line-clamp-3">
+                  On transitions, small daily rituals, and taking life chapter by chapter.
+                </p>
+              </div>
+              <span class="text-[11px] font-mono text-neonPink flex items-center gap-1 pt-2">
+                Read Essay <i class="fa-solid fa-arrow-right text-[10px]"></i>
+              </span>
+            </a>
+
           </div>
-
         </div>
 
-        <!-- ================= TAB 4: CONNECT & RESUME ================= -->
+        <!-- ================= TAB 4: BOOK COVERS (NEW) ================= -->
+        <div id="tab-bookcovers" class="window-tab hidden space-y-6">
+          <div class="border-b border-cyberBorder pb-4 flex justify-between items-end">
+            <div>
+              <h3 class="font-pixel text-2xl text-neonPink font-bold">BOOK_COVER_STUDIO.VAULT</h3>
+              <p class="text-xs font-mono text-slate-400">Selected book cover design concepts tailored for Romance and Literary Fiction.</p>
+            </div>
+            <span class="text-xs font-mono text-neonPink bg-neonPink/10 px-2.5 py-1 rounded border border-neonPink/30">
+              CUSTOM GALLERY
+            </span>
+          </div>
+
+          <!-- Covers Grid -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
+            
+            <!-- Cover 1 -->
+            <div class="bg-cyberHeader/60 border border-cyberBorder hover:border-neonPink p-4 rounded-xl space-y-3 transition-all group flex flex-col justify-between">
+              <div class="aspect-[2/3] rounded-lg overflow-hidden border border-cyberBorder bg-cyberCard shadow-lg">
+                <img src="3e5a842b.jpeg" alt="Second Chances & Espresso" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+              </div>
+              <div class="space-y-1">
+                <span class="text-[10px] font-mono text-neonPink font-bold">CONTEMPORARY ROMANCE</span>
+                <h4 class="font-bold text-sm text-white">Second Chances & Espresso</h4>
+                <p class="text-xs text-slate-400">Warm illustrated rom-com palette with expressive brush-script lettering.</p>
+              </div>
+            </div>
+
+            <!-- Cover 2 -->
+            <div class="bg-cyberHeader/60 border border-cyberBorder hover:border-neonPink p-4 rounded-xl space-y-3 transition-all group flex flex-col justify-between">
+              <div class="aspect-[2/3] rounded-lg overflow-hidden border border-cyberBorder bg-cyberCard shadow-lg">
+                <img src="8f42f215.jpeg" alt="Anatomy of a Quiet Summer" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+              </div>
+              <div class="space-y-1">
+                <span class="text-[10px] font-mono text-neonPink font-bold">LITERARY FICTION</span>
+                <h4 class="font-bold text-sm text-white">Anatomy of a Quiet Summer</h4>
+                <p class="text-xs text-slate-400">Crimson risograph ink wash and delicate botanical paper layering.</p>
+              </div>
+            </div>
+
+            <!-- Cover 3 -->
+            <div class="bg-cyberHeader/60 border border-cyberBorder hover:border-neonPink p-4 rounded-xl space-y-3 transition-all group flex flex-col justify-between">
+              <div class="aspect-[2/3] rounded-lg overflow-hidden border border-cyberBorder bg-cyberCard shadow-lg">
+                <img src="3dce596d.jpeg" alt="Things We Left in Manila" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+              </div>
+              <div class="space-y-1">
+                <span class="text-[10px] font-mono text-neonPink font-bold">LITERARY FICTION</span>
+                <h4 class="font-bold text-sm text-white">Things We Left in Manila</h4>
+                <p class="text-xs text-slate-400">Minimalist monochrome torn-paper collage with vertical spine typography.</p>
+              </div>
+            </div>
+
+            <!-- Cover 4 -->
+            <div class="bg-cyberHeader/60 border border-cyberBorder hover:border-neonPink p-4 rounded-xl space-y-3 transition-all group flex flex-col justify-between">
+              <div class="aspect-[2/3] rounded-lg overflow-hidden border border-cyberBorder bg-cyberCard shadow-lg">
+                <img src="9513d7fb.jpeg" alt="The Saltwater Letters" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+              </div>
+              <div class="space-y-1">
+                <span class="text-[10px] font-mono text-neonPink font-bold">ROMANTIC LITERARY</span>
+                <h4 class="font-bold text-sm text-white">The Saltwater Letters</h4>
+                <p class="text-xs text-slate-400">Duotone dusty-rose portrait framed by terracotta cutouts and margin notes.</p>
+              </div>
+            </div>
+
+            <!-- Cover 5 -->
+            <div class="bg-cyberHeader/60 border border-cyberBorder hover:border-neonPink p-4 rounded-xl space-y-3 transition-all group flex flex-col justify-between">
+              <div class="aspect-[2/3] rounded-lg overflow-hidden border border-cyberBorder bg-cyberCard shadow-lg">
+                <img src="2b267339.jpeg" alt="Midnight at the Conservatory" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+              </div>
+              <div class="space-y-1">
+                <span class="text-[10px] font-mono text-neonPink font-bold">GOTHIC ROMANCE</span>
+                <h4 class="font-bold text-sm text-white">Midnight at the Conservatory</h4>
+                <p class="text-xs text-slate-400">Vintage clothbound emerald green edition with ornate gold-foil filigree.</p>
+              </div>
+            </div>
+
+            <!-- Cover 6 -->
+            <div class="bg-cyberHeader/60 border border-cyberBorder hover:border-neonPink p-4 rounded-xl space-y-3 transition-all group flex flex-col justify-between">
+              <div class="aspect-[2/3] rounded-lg overflow-hidden border border-cyberBorder bg-cyberCard shadow-lg">
+                <img src="2495a6d4.jpeg" alt="A Study in Borrowed Time" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+              </div>
+              <div class="space-y-1">
+                <span class="text-[10px] font-mono text-neonPink font-bold">LITERARY FICTION</span>
+                <h4 class="font-bold text-sm text-white">A Study in Borrowed Time</h4>
+                <p class="text-xs text-slate-400">Swiss typography and retro screenprinted cut-paper labyrinth motif.</p>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Commission Callout -->
+          <div class="bg-cyberHeader/80 border border-neonPink/40 p-4 rounded-xl flex flex-col sm:flex-row justify-between items-center gap-4 text-xs font-mono mt-4">
+            <div>
+              <span class="text-neonPink font-bold block mb-1">BOOK COVER COMMISSION INQUIRIES</span>
+              <p class="text-slate-300 font-sans">Open for freelance indie author commissions and custom typography wraparound jackets.</p>
+            </div>
+            <button onclick="switchTab('connect')" class="bg-neonPink text-black font-bold px-4 py-2 rounded-lg hover:opacity-90 transition-opacity whitespace-nowrap cursor-pointer">
+              REQUEST QUOTE
+            </button>
+          </div>
+        </div>
+
+        <!-- ================= TAB 5: CONNECT ================= -->
         <div id="tab-connect" class="window-tab hidden space-y-6">
           <div class="border-b border-cyberBorder pb-4">
-            <h3 class="font-pixel text-2xl text-neonGold font-bold">CONNECT_&_RESUME.EXE</h3>
-            <p class="text-xs font-mono text-slate-400">Direct contact channels for executive VA opportunities, operations lead roles, or writing collaborations.</p>
+            <h3 class="font-pixel text-2xl text-neonGold font-bold">COMMUNICATION_LINK.EXE</h3>
+            <p class="text-xs font-mono text-slate-400">Initiate secure transmission for operations, virtual assistance, or book cover design inquiries.</p>
           </div>
 
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             
-            <!-- Direct Email Action Box -->
-            <div class="bg-cyberHeader/60 border border-cyberBorder p-6 rounded-xl space-y-4 flex flex-col justify-between">
-              <div class="space-y-2">
-                <span class="text-xs font-mono text-neonGold font-bold block"><i class="fa-solid fa-envelope"></i> DIRECT EMAIL CONNECTION</span>
-                <p class="text-xs text-slate-300">Click below to copy my primary email address directly to your clipboard:</p>
-                <div class="bg-cyberCard border border-cyberBorder p-3 rounded-lg font-mono text-sm text-neonCyan flex justify-between items-center">
-                  <span>carriecuibaclayon@gmail.com</span>
-                  <i class="fa-solid fa-copy text-slate-500"></i>
-                </div>
-              </div>
-
-              <button 
-                onclick="copyEmailToClipboard()" 
-                id="copyBtn"
-                class="w-full py-3 bg-gradient-to-r from-neonCyan via-neonPurple to-neonPink hover:opacity-90 text-white font-mono font-bold text-xs rounded-lg transition-all shadow-lg flex items-center justify-center gap-2 cursor-pointer"
-              >
-                <i class="fa-solid fa-copy"></i> COPY EMAIL ADDRESS
-              </button>
-            </div>
-
-            <!-- Social Links & Resume Download -->
-            <div class="bg-cyberHeader/60 border border-cyberBorder p-6 rounded-xl space-y-4 flex flex-col justify-between">
-              <div class="space-y-3">
-                <span class="text-xs font-mono text-neonCyan font-bold block"><i class="fa-solid fa-link"></i> EXTERNAL NETWORKS</span>
+            <!-- Left: Direct Links -->
+            <div class="space-y-4">
+              <div class="bg-cyberHeader/60 border border-cyberBorder p-4 rounded-xl space-y-3">
+                <span class="text-xs font-mono text-neonGold font-bold">DIRECT CHANNELS</span>
                 
-                <a href="https://www.linkedin.com/in/carriecuibaclayon/" target="_blank" class="flex items-center justify-between p-3 bg-cyberCard border border-cyberBorder hover:border-neonCyan rounded-lg text-xs font-mono text-slate-200 transition-colors group">
-                  <span class="flex items-center gap-2"><i class="fa-brands fa-linkedin text-neonCyan text-sm"></i> LinkedIn Profile</span>
-                  <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-slate-500 group-hover:text-neonCyan"></i>
+                <a href="mailto:carriecuibaclayon@gmail.com" class="flex items-center gap-3 p-3 rounded-lg bg-cyberCard border border-cyberBorder hover:border-neonGold transition-colors group">
+                  <i class="fa-solid fa-envelope text-neonGold text-lg"></i>
+                  <div>
+                    <span class="text-[10px] font-mono text-slate-400 block">EMAIL TRANSMISSION</span>
+                    <span class="text-xs text-slate-200 group-hover:text-neonGold font-mono">carriecuibaclayon@gmail.com</span>
+                  </div>
                 </a>
 
-                <a href="https://hellokieri.substack.com/" target="_blank" class="flex items-center justify-between p-3 bg-cyberCard border border-cyberBorder hover:border-neonPink rounded-lg text-xs font-mono text-slate-200 transition-colors group">
-                  <span class="flex items-center gap-2"><i class="fa-solid fa-newspaper text-neonPink text-sm"></i> Substack Newsletter</span>
-                  <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-slate-500 group-hover:text-neonPink"></i>
+                <a href="https://linkedin.com" target="_blank" class="flex items-center gap-3 p-3 rounded-lg bg-cyberCard border border-cyberBorder hover:border-neonCyan transition-colors group">
+                  <i class="fa-brands fa-linkedin text-neonCyan text-lg"></i>
+                  <div>
+                    <span class="text-[10px] font-mono text-slate-400 block">PROFESSIONAL NETWORK</span>
+                    <span class="text-xs text-slate-200 group-hover:text-neonCyan font-mono">Carrie Baclayon on LinkedIn</span>
+                  </div>
+                </a>
+
+                <a href="https://hellokieri.substack.com/" target="_blank" class="flex items-center gap-3 p-3 rounded-lg bg-cyberCard border border-cyberBorder hover:border-neonPink transition-colors group">
+                  <i class="fa-solid fa-pen-nib text-neonPink text-lg"></i>
+                  <div>
+                    <span class="text-[10px] font-mono text-slate-400 block">SUBSTACK PUBLICATION</span>
+                    <span class="text-xs text-slate-200 group-hover:text-neonPink font-mono">hellokieri.substack.com</span>
+                  </div>
                 </a>
               </div>
-
-              <a 
-                href="Carrie_Baclayon_Resume.pdf" 
-                download 
-                class="w-full py-3 bg-cyberCard border-2 border-neonGold/60 hover:border-neonGold text-neonGold font-mono font-bold text-xs rounded-lg transition-all flex items-center justify-center gap-2 text-center"
-              >
-                <i class="fa-solid fa-file-arrow-down"></i> DOWNLOAD RESUME (.PDF)
-              </a>
             </div>
+
+            <!-- Right: Interactive Inquiry Form -->
+            <form onsubmit="handleFormSubmit(event)" class="bg-cyberHeader/60 border border-cyberBorder p-5 rounded-xl space-y-4">
+              <span class="text-xs font-mono text-neonGold font-bold block">DISPATCH MESSAGE</span>
+              
+              <div class="space-y-1">
+                <label class="text-[11px] font-mono text-slate-400 block">SENDER NAME / ORG</label>
+                <input type="text" required class="w-full bg-cyberCard border border-cyberBorder rounded px-3 py-2 text-xs font-mono text-white focus:outline-none focus:border-neonGold" placeholder="e.g. Dr. Vance / Indie Author">
+              </div>
+
+              <div class="space-y-1">
+                <label class="text-[11px] font-mono text-slate-400 block">PROJECT TYPE</label>
+                <select class="w-full bg-cyberCard border border-cyberBorder rounded px-3 py-2 text-xs font-mono text-white focus:outline-none focus:border-neonGold">
+                  <option>Book Cover Design (Romance / Literary)</option>
+                  <option>Healthcare Operations / Dental RCM</option>
+                  <option>Executive Virtual Assistant / DM Setting</option>
+                  <option>Other Collaboration</option>
+                </select>
+              </div>
+
+              <div class="space-y-1">
+                <label class="text-[11px] font-mono text-slate-400 block">MESSAGE BRIEF</label>
+                <textarea rows="3" required class="w-full bg-cyberCard border border-cyberBorder rounded px-3 py-2 text-xs font-mono text-white focus:outline-none focus:border-neonGold" placeholder="Outline project scope, timeline, or genre..."></textarea>
+              </div>
+
+              <button type="submit" class="w-full bg-neonGold text-black font-pixel font-bold py-2.5 rounded-lg hover:opacity-90 transition-opacity cursor-pointer">
+                SEND TRANSMISSION
+              </button>
+            </form>
 
           </div>
         </div>
@@ -669,177 +711,101 @@
   </main>
 
   <!-- ================= FOOTER ================= -->
-  <footer class="border-t border-cyberBorder bg-cyberHeader/60 py-4 px-4 text-center font-mono text-xs text-slate-500 mt-6">
+  <footer class="bg-cyberHeader/90 border-t border-cyberBorder py-4 px-4 mt-8 text-center font-mono text-xs text-slate-500">
     <div class="max-w-6xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2">
-      <div>© 2026 Carrie Baclayon · Operations & Writing</div>
-      <div class="text-[10px] text-slate-600">CEBU CITY, PH // ALL SYSTEMS NOMINAL</div>
+      <span>© 2026 CARRIE BACLAYON. BUILT FOR PRECISION & CREATIVE DEPTH.</span>
+      <span class="text-neonCyan">SECURE_CONNECTION // 100% ONLINE</span>
     </div>
   </footer>
 
   <!-- ================= JAVASCRIPT LOGIC ================= -->
   <script>
-    // Live GMT+8 Clock
+    // Live Clock Function
     function updateClock() {
       const now = new Date();
-      const options = { timeZone: 'Asia/Manila', hour12: true, hour: '2-digit', minute: '2-digit', second: '2-digit' };
-      document.getElementById('liveClock').innerText = now.toLocaleTimeString('en-US', options) + ' PHT';
+      const hours = String(now.getHours()).padStart(2, '0');
+      const minutes = String(now.getMinutes()).padStart(2, '0');
+      const seconds = String(now.getSeconds()).padStart(2, '0');
+      document.getElementById('liveClock').innerText = `${hours}:${minutes}:${seconds} PST`;
     }
     setInterval(updateClock, 1000);
     updateClock();
 
-    // Sound FX Synthesizer (Web Audio API)
-    let audioEnabled = true;
-    const AudioContext = window.AudioContext || window.webkitAudioContext;
-    let audioCtx = null;
-
-    function playBeep(freq = 440, duration = 0.08, type = 'sine') {
-      if (!audioEnabled) return;
-      try {
-        if (!audioCtx) audioCtx = new AudioContext();
-        if (audioCtx.state === 'suspended') audioCtx.resume();
-        const osc = audioCtx.createOscillator();
-        const gain = audioCtx.createGain();
-        osc.type = type;
-        osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
-        gain.gain.setValueAtTime(0.05, audioCtx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + duration);
-        osc.connect(gain);
-        gain.connect(audioCtx.destination);
-        osc.start();
-        osc.stop(audioCtx.currentTime + duration);
-      } catch (e) {
-        console.log("Audio play blocked");
-      }
-    }
-
-    function toggleAudioSound() {
-      audioEnabled = !audioEnabled;
-      const soundText = document.getElementById('soundText');
-      const soundIcon = document.getElementById('soundIcon');
-      if (audioEnabled) {
-        soundText.innerText = "SFX: ON";
-        soundIcon.className = "fa-solid fa-volume-high text-neonCyan";
-        playBeep(600, 0.1, 'square');
-      } else {
-        soundText.innerText = "SFX: OFF";
-        soundIcon.className = "fa-solid fa-volume-xmark text-slate-500";
-      }
-    }
-
-    // Tab Switcher
-    const windowTitles = {
-      'experience': 'module://work_experience.exe',
-      'systems': 'module://systems_toolbelt.sys',
-      'writing': 'module://writing_design.vault',
-      'connect': 'module://connect_resume.exe'
-    };
-
+    // Tab Switching Logic
     function switchTab(tabId) {
-      playBeep(520, 0.06, 'triangle');
-      
-      // Update window title
-      document.getElementById('windowTitle').innerText = windowTitles[tabId] || 'module://terminal.exe';
-
       // Hide all tabs
       document.querySelectorAll('.window-tab').forEach(tab => {
-        tab.classList.add('hidden');
         tab.classList.remove('window-active');
+        tab.classList.add('hidden');
       });
 
-      // Show target tab
-      const activeTab = document.getElementById(`tab-${tabId}`);
-      if (activeTab) {
-        activeTab.classList.remove('hidden');
-        activeTab.classList.add('window-active');
-      }
-
-      // Reset button styles
+      // Remove glow/active state from all buttons
       document.querySelectorAll('.tab-btn').forEach(btn => {
-        btn.classList.remove('border-neonCyan', 'glow-cyan', 'border-neonPurple', 'border-neonPink', 'border-neonGold');
+        btn.classList.remove('border-neonCyan', 'border-neonPurple', 'border-neonPink', 'border-neonGold', 'glow-cyan', 'glow-purple', 'glow-pink');
         btn.classList.add('border-cyberBorder');
       });
 
+      // Show selected tab
+      const targetTab = document.getElementById(`tab-${tabId}`);
+      if (targetTab) {
+        targetTab.classList.remove('hidden');
+        targetTab.classList.add('window-active');
+      }
+
       // Highlight active button
-      const activeBtn = document.getElementById(`btn-${tabId}`);
-      if (activeBtn) {
-        activeBtn.classList.remove('border-cyberBorder');
-        if (tabId === 'experience') activeBtn.classList.add('border-neonCyan', 'glow-cyan');
-        if (tabId === 'systems') activeBtn.classList.add('border-neonPurple');
-        if (tabId === 'writing') activeBtn.classList.add('border-neonPink');
-        if (tabId === 'connect') activeBtn.classList.add('border-neonGold');
+      const targetBtn = document.getElementById(`btn-${tabId}`);
+      if (targetBtn) {
+        targetBtn.classList.remove('border-cyberBorder');
+        if (tabId === 'experience') targetBtn.classList.add('border-neonCyan', 'glow-cyan');
+        if (tabId === 'systems') targetBtn.classList.add('border-neonPurple', 'glow-purple');
+        if (tabId === 'writing') targetBtn.classList.add('border-neonPink', 'glow-pink');
+        if (tabId === 'bookcovers') targetBtn.classList.add('border-neonPink', 'glow-pink');
+        if (tabId === 'connect') targetBtn.classList.add('border-neonGold');
+      }
+
+      // Update Window Title Bar
+      const titles = {
+        'experience': 'module://work_experience.exe',
+        'systems': 'module://systems_toolbelt.sys',
+        'writing': 'module://writing_vault.log',
+        'bookcovers': 'module://book_cover_studio.vault',
+        'connect': 'module://communication_link.exe'
+      };
+      document.getElementById('windowTitle').innerText = titles[tabId] || 'module://terminal.exe';
+    }
+
+    // Audio SFX Toggle (Simulated)
+    let soundEnabled = true;
+    function toggleAudioSound() {
+      soundEnabled = !soundEnabled;
+      const icon = document.getElementById('soundIcon');
+      const text = document.getElementById('soundText');
+      if (soundEnabled) {
+        icon.className = 'fa-solid fa-volume-high text-neonCyan';
+        text.innerText = 'SFX: ON';
+      } else {
+        icon.className = 'fa-solid fa-volume-xmark text-slate-500';
+        text.innerText = 'SFX: OFF';
       }
     }
 
-    // Window Controls Simulation
+    // Window Control Buttons (Visual feedback)
     function closeCurrentWindow() {
-      playBeep(300, 0.1, 'sawtooth');
-      document.getElementById('windowBody').innerHTML = `
-        <div class="text-center py-16 space-y-3 font-mono">
-          <p class="text-neonPink font-bold">MODULE TERMINATED.</p>
-          <p class="text-xs text-slate-500">Select a module from the System Launchpad above to restart.</p>
-        </div>
-      `;
+      alert('System Notification: Main process cannot be terminated.');
     }
-
     function minimizeWindow() {
-      playBeep(400, 0.08, 'sine');
-      const body = document.getElementById('windowBody');
-      body.classList.toggle('hidden');
+      alert('System Notification: Window minimized to taskbar buffer.');
     }
-
     function maximizeWindow() {
-      playBeep(700, 0.08, 'sine');
-      const main = document.querySelector('main');
-      main.classList.toggle('max-w-6xl');
-      main.classList.toggle('max-w-full');
+      alert('System Notification: Window is already at maximum viewport dimensions.');
     }
 
-    // Copy Email to Clipboard
-    function copyEmailToClipboard() {
-      const email = "carriecuibaclayon@gmail.com";
-      navigator.clipboard.writeText(email).then(() => {
-        playBeep(800, 0.1, 'sine');
-        const copyBtn = document.getElementById('copyBtn');
-        copyBtn.innerHTML = `<i class="fa-solid fa-check"></i> COPIED TO CLIPBOARD!`;
-        copyBtn.classList.replace('from-neonCyan', 'from-neonGreen');
-        setTimeout(() => {
-          copyBtn.innerHTML = `<i class="fa-solid fa-copy"></i> COPY EMAIL ADDRESS`;
-          copyBtn.classList.replace('from-neonGreen', 'from-neonCyan');
-        }, 2000);
-      });
+    // Form Submission
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      alert('Transmission successful! Carrie will review your inquiry shortly.');
+      e.target.reset();
     }
-
-    // Background Canvas Stars Effect
-    const canvas = document.getElementById('bgCanvas');
-    const ctx = canvas.getContext('2d');
-
-    function resizeCanvas() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
-    window.addEventListener('resize', resizeCanvas);
-    resizeCanvas();
-
-    const stars = Array.from({ length: 90 }, () => ({
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
-      size: Math.random() * 2,
-      speed: Math.random() * 0.4 + 0.1
-    }));
-
-    function animateStars() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = '#00dfd8';
-
-      stars.forEach(star => {
-        ctx.fillRect(star.x, star.y, star.size, star.size);
-        star.y -= star.speed;
-        if (star.y < 0) star.y = canvas.height;
-      });
-
-      requestAnimationFrame(animateStars);
-    }
-    animateStars();
   </script>
 </body>
 </html>
