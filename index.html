@@ -526,7 +526,7 @@
                   <p class="text-xs text-slate-400">Cafe packaging concept, menu layout, and promotional social templates.</p>
                   <div class="flex items-center justify-between pt-2">
                     <span class="text-[10px] font-mono text-neonGold bg-neonGold/10 px-2 py-0.5 rounded">Print & Social</span>
-                    <a href="https://canva.link/sunbaked-coffee-lab" target="_blank" rel="noopener noreferrer" class="text-[11px] font-mono text-neonGold hover:underline font-bold flex items-center gap-1">
+                    <a href="https://canva.link/sunbaked-coffee-carrie-baclayon" target="_blank" rel="noopener noreferrer" class="text-[11px] font-mono text-neonGold hover:underline font-bold flex items-center gap-1">
                       CANVA PROJECT <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>
                     </a>
                   </div>
@@ -536,7 +536,7 @@
           </div>
         </div>
 
-        <!-- ================= TAB 4: BOOK COVERS (W/ YOUR EXACT LOCAL FILENAMES) ================= -->
+        <!-- ================= TAB 4: BOOK COVERS ================= -->
         <div id="tab-bookcovers" class="window-tab space-y-6">
           <div class="border-b border-cyberBorder pb-4 flex justify-between items-end">
             <div>
@@ -617,7 +617,7 @@
           </div>
         </div>
 
-        <!-- ================= TAB 5: CONNECT ================= -->
+        <!-- ================= TAB 5: CONNECT (WIRED TO FORMSPREE) ================= -->
         <div id="tab-connect" class="window-tab space-y-6">
           <div class="border-b border-cyberBorder pb-4">
             <h3 class="font-pixel text-2xl text-neonGold font-bold">COMMUNICATION_LINK.EXE</h3>
@@ -655,27 +655,28 @@
               </div>
             </div>
 
-            <form onsubmit="handleFormSubmit(event)" class="bg-cyberHeader/60 border border-cyberBorder p-5 rounded-xl space-y-4">
+            <!-- FORMSPREE ACTION FORM -->
+            <form action="https://formspree.io/f/xbgogpzz" method="POST" class="bg-cyberHeader/60 border border-cyberBorder p-5 rounded-xl space-y-4">
               <span class="text-xs font-mono text-neonGold font-bold block">DISPATCH MESSAGE</span>
               
               <div class="space-y-1">
                 <label class="text-[11px] font-mono text-slate-400 block">SENDER NAME / ORG</label>
-                <input type="text" required class="w-full bg-cyberCard border border-cyberBorder rounded px-3 py-2 text-xs font-mono text-white focus:outline-none focus:border-neonGold" placeholder="e.g. Dr. Vance / Indie Author">
+                <input type="text" name="sender_name" required class="w-full bg-cyberCard border border-cyberBorder rounded px-3 py-2 text-xs font-mono text-white focus:outline-none focus:border-neonGold" placeholder="e.g. Dr. Vance / Indie Author">
               </div>
 
               <div class="space-y-1">
                 <label class="text-[11px] font-mono text-slate-400 block">PROJECT TYPE</label>
-                <select class="w-full bg-cyberCard border border-cyberBorder rounded px-3 py-2 text-xs font-mono text-white focus:outline-none focus:border-neonGold">
-                  <option>Book Cover Design (Romance / Literary)</option>
-                  <option>Healthcare Operations / Dental RCM</option>
-                  <option>Executive Virtual Assistant / DM Setting</option>
-                  <option>Canva Brand Identity Project</option>
+                <select name="project_type" class="w-full bg-cyberCard border border-cyberBorder rounded px-3 py-2 text-xs font-mono text-white focus:outline-none focus:border-neonGold">
+                  <option value="Book Cover Design">Book Cover Design (Romance / Literary)</option>
+                  <option value="Healthcare Operations">Healthcare Operations / Dental RCM</option>
+                  <option value="Executive Virtual Assistant">Executive Virtual Assistant / DM Setting</option>
+                  <option value="Canva Brand Identity">Canva Brand Identity Project</option>
                 </select>
               </div>
 
               <div class="space-y-1">
                 <label class="text-[11px] font-mono text-slate-400 block">MESSAGE BRIEF</label>
-                <textarea rows="3" required class="w-full bg-cyberCard border border-cyberBorder rounded px-3 py-2 text-xs font-mono text-white focus:outline-none focus:border-neonGold" placeholder="Outline project scope, timeline, or genre..."></textarea>
+                <textarea name="message" rows="3" required class="w-full bg-cyberCard border border-cyberBorder rounded px-3 py-2 text-xs font-mono text-white focus:outline-none focus:border-neonGold" placeholder="Outline project scope, timeline, or genre..."></textarea>
               </div>
 
               <button type="submit" class="w-full bg-neonGold text-black font-pixel font-bold py-2.5 rounded-lg hover:opacity-90 transition-opacity cursor-pointer">
@@ -759,12 +760,6 @@
         icon.className = 'fa-solid fa-volume-xmark text-slate-500';
         text.innerText = 'SFX: OFF';
       }
-    }
-
-    function handleFormSubmit(e) {
-      e.preventDefault();
-      alert('Transmission successful! Carrie will review your inquiry shortly.');
-      e.target.reset();
     }
   </script>
 </body>
