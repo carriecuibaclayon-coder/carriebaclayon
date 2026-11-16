@@ -42,7 +42,6 @@
   </script>
 
   <style>
-    /* Global Glows & Custom Scrollbar */
     body {
       background-color: #0d0e15;
       color: #e2e8f0;
@@ -63,18 +62,11 @@
       background: #00dfd8;
     }
 
-    /* Cyber Glow Effects */
-    .glow-cyan {
-      box-shadow: 0 0 20px rgba(0, 223, 216, 0.25);
-    }
-    .glow-purple {
-      box-shadow: 0 0 25px rgba(121, 40, 202, 0.3);
-    }
-    .glow-pink {
-      box-shadow: 0 0 20px rgba(255, 0, 128, 0.25);
-    }
+    .glow-cyan { box-shadow: 0 0 20px rgba(0, 223, 216, 0.25); }
+    .glow-purple { box-shadow: 0 0 25px rgba(121, 40, 202, 0.3); }
+    .glow-pink { box-shadow: 0 0 20px rgba(255, 0, 128, 0.25); }
+    .glow-gold { box-shadow: 0 0 20px rgba(255, 215, 0, 0.25); }
 
-    /* Scanline Overlay */
     .scanlines {
       background: linear-gradient(
         to bottom,
@@ -86,7 +78,6 @@
       background-size: 100% 4px;
     }
 
-    /* Perspective Grid Effect */
     .perspective-grid {
       position: fixed;
       bottom: -30%;
@@ -104,7 +95,7 @@
     }
 
     .window-active {
-      display: block;
+      display: block !important;
       animation: windowOpen 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
@@ -126,7 +117,6 @@
 </head>
 <body class="font-sans antialiased min-h-screen flex flex-col justify-between selection:bg-neonCyan selection:text-black">
 
-  <!-- Interactive Background Canvas -->
   <canvas id="bgCanvas" class="fixed top-0 left-0 w-full h-full -z-20 pointer-events-none opacity-40"></canvas>
   <div class="perspective-grid"></div>
   <div class="fixed top-0 left-0 w-full h-full -z-10 scanlines pointer-events-none opacity-20"></div>
@@ -134,8 +124,6 @@
   <!-- ================= HEADER TERMINAL BAR ================= -->
   <header class="sticky top-0 z-50 bg-cyberHeader/90 backdrop-blur-md border-b border-cyberBorder px-4 py-2.5">
     <div class="max-w-6xl mx-auto flex flex-wrap justify-between items-center gap-3 font-mono text-xs">
-      
-      <!-- System Name & Status -->
       <div class="flex items-center gap-3">
         <div class="flex gap-1.5">
           <span class="w-3 h-3 rounded-full bg-red-500/80 inline-block"></span>
@@ -145,7 +133,6 @@
         <span class="font-pixel text-sm text-neonCyan font-bold tracking-wider">CARRIE BACLAYON // OS v2.0</span>
       </div>
 
-      <!-- Live Clock & Cebu Location -->
       <div class="flex items-center gap-4 text-slate-400">
         <span class="hidden sm:inline-flex items-center gap-1.5 bg-cyberCard px-2.5 py-1 rounded border border-cyberBorder">
           <i class="fa-solid fa-location-dot text-neonPink text-[10px]"></i> CEBU CITY, PH (GMT+8)
@@ -153,19 +140,15 @@
         <span id="liveClock" class="bg-cyberCard px-2.5 py-1 rounded border border-cyberBorder text-neonGold font-semibold">
           00:00:00 PST
         </span>
-
-        <!-- Audio Mute/Unmute Toggle Button -->
         <button 
           onclick="toggleAudioSound()" 
           id="soundBtn"
           class="flex items-center gap-1.5 bg-cyberBorder hover:bg-cyberBorder/80 px-2.5 py-1 rounded text-slate-200 transition-colors cursor-pointer border border-slate-700"
-          title="Toggle Web Audio SFX"
         >
           <i id="soundIcon" class="fa-solid fa-volume-high text-neonCyan"></i>
           <span id="soundText" class="text-[10px]">SFX: ON</span>
         </button>
       </div>
-
     </div>
   </header>
 
@@ -174,17 +157,11 @@
 
     <!-- ================= PROFILE TERMINAL CARD ================= -->
     <section class="bg-cyberCard/90 border-2 border-cyberBorder rounded-2xl p-6 md:p-8 relative overflow-hidden backdrop-blur-lg glow-purple">
-      
-      <!-- Ambient Glow Orb -->
       <div class="absolute -top-20 -right-20 w-64 h-64 bg-neonPurple/20 rounded-full blur-3xl pointer-events-none"></div>
       <div class="absolute -bottom-20 -left-20 w-64 h-64 bg-neonCyan/15 rounded-full blur-3xl pointer-events-none"></div>
 
       <div class="relative z-10 flex flex-col md:flex-row gap-8 items-center md:items-start text-center md:text-left">
-        
-        <!-- Left Column: Balanced Profile Photo & Role Badges -->
         <div class="flex flex-col items-center md:items-start gap-4 flex-shrink-0">
-          
-          <!-- Optimized Photo Badge -->
           <div class="relative">
             <div class="w-24 h-24 md:w-28 md:h-28 rounded-2xl p-1 bg-gradient-to-br from-neonCyan via-neonPurple to-neonPink shadow-lg relative overflow-hidden">
               <img 
@@ -195,15 +172,12 @@
                 onerror="this.src='https://placehold.co/150x150/141622/00dfd8?text=CB'"
               >
             </div>
-
-            <!-- Live Status Indicator -->
-            <div class="absolute -top-1 -right-1 bg-cyberCard border border-cyberBorder px-2 py-0.5 rounded-full shadow-md flex items-center gap-1.5" title="Available / Online">
+            <div class="absolute -top-1 -right-1 bg-cyberCard border border-cyberBorder px-2 py-0.5 rounded-full shadow-md flex items-center gap-1.5">
               <span class="w-2 h-2 rounded-full bg-neonGreen animate-pulse block"></span>
               <span class="text-[9px] font-mono text-neonGreen font-bold">ONLINE</span>
             </div>
           </div>
 
-          <!-- Role Badges -->
           <div class="flex flex-col gap-1.5 w-full items-center md:items-start">
             <span class="text-[10px] font-mono font-bold px-2.5 py-1 rounded bg-neonPurple/20 text-purple-300 border border-neonPurple/40 w-full text-center md:text-left">
               OPERATIONS & EXECUTIVE VA
@@ -212,24 +186,19 @@
               LICENSED TEACHER (LPT)
             </span>
             <span class="text-[10px] font-mono font-bold px-2.5 py-1 rounded bg-neonPink/10 text-pink-300 border border-neonPink/30 w-full text-center md:text-left">
-              BOOK COVER DESIGNER
+              SUBSTACK & CANVA DESIGN
             </span>
           </div>
-
         </div>
 
-        <!-- Right Column: Name, Bio, Quote, and Quick Specs -->
         <div class="space-y-4 flex-grow">
-          
           <h1 class="font-pixel text-3xl md:text-5xl font-bold text-white tracking-wide">
             CARRIE BACLAYON
           </h1>
-
           <p class="text-sm md:text-base text-slate-300 font-medium">
             Operations Team Lead & Executive Virtual Assistant with 5+ years driving healthcare revenue cycle management, SLA compliance, and multi-provider administrative workflows.
           </p>
 
-          <!-- Signature Quote -->
           <div class="bg-cyberHeader/80 border-l-4 border-neonCyan p-3 rounded-r-xl text-left">
             <p class="font-sans italic text-slate-200 text-xs md:text-sm">
               <i class="fa-solid fa-quote-left text-neonCyan/60 mr-1.5"></i>
@@ -237,7 +206,6 @@
             </p>
           </div>
 
-          <!-- Dual-Mode Quick Specs Grid -->
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1 text-xs font-mono">
             <div class="bg-cyberHeader/60 border border-cyberBorder p-2.5 rounded-lg flex items-center gap-2.5">
               <i class="fa-solid fa-sun text-neonGold text-base"></i>
@@ -254,9 +222,7 @@
               </div>
             </div>
           </div>
-
         </div>
-
       </div>
     </section>
 
@@ -269,17 +235,16 @@
         <span class="text-xs font-mono text-slate-500">SELECT MODULE TO RUN</span>
       </div>
 
-      <nav class="grid grid-cols-2 md:grid-cols-5 gap-3">
-        
+      <nav class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
         <!-- Tab Button 1 -->
         <button 
           onclick="switchTab('experience')" 
           id="btn-experience"
-          class="tab-btn bg-cyberCard border-2 border-neonCyan/60 hover:border-neonCyan p-4 rounded-xl flex flex-col items-center gap-2 text-center transition-all cursor-pointer group glow-cyan"
+          class="tab-btn bg-cyberCard border-2 border-neonCyan glow-cyan p-4 rounded-xl flex flex-col items-center gap-2 text-center transition-all cursor-pointer group"
         >
           <span class="text-2xl text-neonCyan group-hover:scale-110 transition-transform"><i class="fa-solid fa-bolt"></i></span>
-          <span class="font-pixel text-sm font-bold text-white tracking-wider">1. EXPERIENCE</span>
-          <span class="text-[10px] font-mono text-slate-400">XtendOps / Amazon</span>
+          <span class="font-pixel text-xs sm:text-sm font-bold text-white tracking-wider">1. EXPERIENCE</span>
+          <span class="text-[9px] sm:text-[10px] font-mono text-slate-400">XtendOps / Amazon</span>
         </button>
 
         <!-- Tab Button 2 -->
@@ -289,8 +254,8 @@
           class="tab-btn bg-cyberCard border-2 border-cyberBorder hover:border-neonPurple p-4 rounded-xl flex flex-col items-center gap-2 text-center transition-all cursor-pointer group"
         >
           <span class="text-2xl text-neonPurple group-hover:scale-110 transition-transform"><i class="fa-solid fa-screwdriver-wrench"></i></span>
-          <span class="font-pixel text-sm font-bold text-white tracking-wider">2. TOOLBELT</span>
-          <span class="text-[10px] font-mono text-slate-400">Dentrix / Salesforce</span>
+          <span class="font-pixel text-xs sm:text-sm font-bold text-white tracking-wider">2. TOOLBELT</span>
+          <span class="text-[9px] sm:text-[10px] font-mono text-slate-400">Dentrix / Salesforce</span>
         </button>
 
         <!-- Tab Button 3 -->
@@ -300,8 +265,8 @@
           class="tab-btn bg-cyberCard border-2 border-cyberBorder hover:border-neonPink p-4 rounded-xl flex flex-col items-center gap-2 text-center transition-all cursor-pointer group"
         >
           <span class="text-2xl text-neonPink group-hover:scale-110 transition-transform"><i class="fa-solid fa-pen-nib"></i></span>
-          <span class="font-pixel text-sm font-bold text-white tracking-wider">3. WRITING</span>
-          <span class="text-[10px] font-mono text-slate-400">Substack Essays</span>
+          <span class="font-pixel text-xs sm:text-sm font-bold text-white tracking-wider">3. WRITING & CANVA</span>
+          <span class="text-[9px] sm:text-[10px] font-mono text-slate-400">Substack & Designs</span>
         </button>
 
         <!-- Tab Button 4 -->
@@ -311,34 +276,31 @@
           class="tab-btn bg-cyberCard border-2 border-cyberBorder hover:border-neonPink p-4 rounded-xl flex flex-col items-center gap-2 text-center transition-all cursor-pointer group"
         >
           <span class="text-2xl text-neonPink group-hover:scale-110 transition-transform"><i class="fa-solid fa-book-open"></i></span>
-          <span class="font-pixel text-sm font-bold text-white tracking-wider">4. BOOK COVERS</span>
-          <span class="text-[10px] font-mono text-slate-400">Romance & Literary</span>
+          <span class="font-pixel text-xs sm:text-sm font-bold text-white tracking-wider">4. BOOK COVERS</span>
+          <span class="text-[9px] sm:text-[10px] font-mono text-slate-400">Romance & Literary</span>
         </button>
 
         <!-- Tab Button 5 -->
         <button 
           onclick="switchTab('connect')" 
           id="btn-connect"
-          class="tab-btn bg-cyberCard border-2 border-cyberBorder hover:border-neonGold p-4 rounded-xl flex flex-col items-center gap-2 text-center transition-all cursor-pointer group col-span-2 md:col-span-1"
+          class="tab-btn bg-cyberCard border-2 border-cyberBorder hover:border-neonGold p-4 rounded-xl flex flex-col items-center gap-2 text-center transition-all cursor-pointer group col-span-2 sm:col-span-1"
         >
           <span class="text-2xl text-neonGold group-hover:scale-110 transition-transform"><i class="fa-solid fa-paper-plane"></i></span>
-          <span class="font-pixel text-sm font-bold text-white tracking-wider">5. CONNECT</span>
-          <span class="text-[10px] font-mono text-slate-400">Email & Inquiries</span>
+          <span class="font-pixel text-xs sm:text-sm font-bold text-white tracking-wider">5. CONNECT</span>
+          <span class="text-[9px] sm:text-[10px] font-mono text-slate-400">Email & Inquiries</span>
         </button>
-
       </nav>
     </section>
 
     <!-- ================= TAB CONTENT WINDOWS ================= -->
     <section class="bg-cyberCard border-2 border-cyberBorder rounded-2xl overflow-hidden backdrop-blur-md shadow-2xl">
-      
-      <!-- OS Window Controls Header -->
       <div class="bg-cyberHeader px-4 py-3 border-b border-cyberBorder flex justify-between items-center font-mono text-xs">
         <div class="flex items-center gap-2">
           <div class="flex gap-1.5">
-            <button onclick="closeCurrentWindow()" class="w-3 h-3 rounded-full bg-red-500 hover:bg-red-600 transition-colors" title="Close Window"></button>
-            <button onclick="minimizeWindow()" class="w-3 h-3 rounded-full bg-yellow-500 hover:bg-yellow-600 transition-colors" title="Minimize Window"></button>
-            <button onclick="maximizeWindow()" class="w-3 h-3 rounded-full bg-green-500 hover:bg-green-600 transition-colors" title="Maximize Window"></button>
+            <span class="w-3 h-3 rounded-full bg-red-500 inline-block"></span>
+            <span class="w-3 h-3 rounded-full bg-yellow-500 inline-block"></span>
+            <span class="w-3 h-3 rounded-full bg-green-500 inline-block"></span>
           </div>
           <span id="windowTitle" class="text-slate-300 font-semibold ml-2">module://work_experience.exe</span>
         </div>
@@ -359,21 +321,14 @@
             </span>
           </div>
 
-          <!-- Timeline Grid -->
           <div class="space-y-6 border-l-2 border-cyberBorder ml-2 md:ml-4 pl-4 md:pl-6">
-            
-            <!-- Job 1 -->
             <div class="relative group space-y-2">
               <div class="absolute -left-[23px] md:-left-[31px] top-1 w-3.5 h-3.5 rounded-full bg-neonCyan ring-4 ring-cyberCard"></div>
-              
               <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1">
-                <h4 class="font-bold text-base text-white flex items-center gap-2">
-                  Operations Team Lead
-                </h4>
+                <h4 class="font-bold text-base text-white">Operations Team Lead</h4>
                 <span class="font-mono text-xs text-neonGold">AUG 2023 – AUG 2026</span>
               </div>
               <p class="text-xs font-mono font-semibold text-neonCyan">XtendOps // Sonrava Health Account</p>
-              
               <ul class="text-xs text-slate-300 space-y-1.5 list-disc list-inside font-sans">
                 <li>Oversee daily dental revenue cycle management operations, dental billing teams, and claims processing SLAs.</li>
                 <li>Conduct regular quality audits, complex EOB reconciliation, and insurance pre-authorization workflows.</li>
@@ -382,51 +337,42 @@
               </ul>
             </div>
 
-            <!-- Job 2 -->
             <div class="relative group space-y-2">
               <div class="absolute -left-[23px] md:-left-[31px] top-1 w-3.5 h-3.5 rounded-full bg-neonPurple ring-4 ring-cyberCard"></div>
-              
               <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1">
                 <h4 class="font-bold text-base text-white">Customer Service Associate (Seasonal)</h4>
                 <span class="font-mono text-xs text-slate-400">APR 2023 – JUL 2023</span>
               </div>
               <p class="text-xs font-mono font-semibold text-purple-300">Amazon</p>
-              
               <ul class="text-xs text-slate-300 space-y-1.5 list-disc list-inside font-sans">
                 <li>Managed high-volume customer inquiries, order fulfillment logistics, and account disputes.</li>
                 <li>Maintained top-tier Customer Satisfaction (CSAT) scores through empathetic problem-solving and swift resolution.</li>
               </ul>
             </div>
 
-            <!-- Job 3 -->
             <div class="relative group space-y-2">
               <div class="absolute -left-[23px] md:-left-[31px] top-1 w-3.5 h-3.5 rounded-full bg-neonPink ring-4 ring-cyberCard"></div>
-              
               <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1">
                 <h4 class="font-bold text-base text-white">Tier 2 Offline / RRD Specialist</h4>
                 <span class="font-mono text-xs text-slate-400">APR 2021 – SEP 2021</span>
               </div>
               <p class="text-xs font-mono font-semibold text-pink-300">Teleperformance // Expedia Chase Account</p>
-              
               <ul class="text-xs text-slate-300 space-y-1.5 list-disc list-inside font-sans">
                 <li>Handled Tier-2 specialized travel reservation escalations, refund audits, and complex booking modifications.</li>
                 <li>Utilized Sabre and Amadeus Global Distribution Systems (GDS) to resolve high-stakes ticketing issues.</li>
               </ul>
             </div>
-
           </div>
         </div>
 
         <!-- ================= TAB 2: SYSTEMS & TOOLBELT ================= -->
-        <div id="tab-systems" class="window-tab hidden space-y-6">
+        <div id="tab-systems" class="window-tab space-y-6">
           <div class="border-b border-cyberBorder pb-4">
             <h3 class="font-pixel text-2xl text-neonPurple font-bold">SYSTEMS_TOOLBELT.SYS</h3>
             <p class="text-xs font-mono text-slate-400">Inventory of software mastery across medical billing, CRM, executive admin, and DM setting.</p>
           </div>
 
           <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
-            
-            <!-- Category 1 -->
             <div class="bg-cyberHeader/60 border border-cyberBorder p-5 rounded-xl space-y-3">
               <div class="flex items-center gap-2 text-neonCyan font-mono font-bold text-sm">
                 <i class="fa-solid fa-tooth"></i> HEALTHCARE & DENTAL
@@ -440,7 +386,6 @@
               </div>
             </div>
 
-            <!-- Category 2 -->
             <div class="bg-cyberHeader/60 border border-cyberBorder p-5 rounded-xl space-y-3">
               <div class="flex items-center gap-2 text-neonPurple font-mono font-bold text-sm">
                 <i class="fa-solid fa-headset"></i> CRM & ESCALATIONS
@@ -454,7 +399,6 @@
               </div>
             </div>
 
-            <!-- Category 3 -->
             <div class="bg-cyberHeader/60 border border-cyberBorder p-5 rounded-xl space-y-3">
               <div class="flex items-center gap-2 text-neonPink font-mono font-bold text-sm">
                 <i class="fa-solid fa-paperclip"></i> ADMIN & DESIGN
@@ -466,74 +410,132 @@
                 <span class="bg-cyberCard border border-pink-400/40 text-pink-300 px-2.5 py-1 rounded">Canva Design Suite</span>
               </div>
             </div>
+          </div>
 
+          <!-- Academic Honors Banner -->
+          <div class="bg-gradient-to-r from-neonPurple/20 via-cyberHeader to-neonCyan/20 border border-cyberBorder p-4 rounded-xl flex flex-col sm:flex-row justify-between items-center gap-3 text-xs">
+            <div class="space-y-1">
+              <span class="font-mono text-neonGold font-bold flex items-center gap-1.5">
+                <i class="fa-solid fa-award"></i> LICENSED PROFESSIONAL TEACHER (LPT)
+              </span>
+              <p class="text-slate-300">Bachelor of Early Childhood Education • <strong>Cum Laude</strong> (Cebu Normal University)</p>
+            </div>
+            <span class="font-mono text-[11px] bg-cyberCard px-3 py-1.5 rounded border border-cyberBorder text-slate-400">
+              ACADEMIC EXCELLENCE AWARD
+            </span>
           </div>
         </div>
 
-        <!-- ================= TAB 3: WRITING ================= -->
-        <div id="tab-writing" class="window-tab hidden space-y-6">
+        <!-- ================= TAB 3: WRITING & CANVA DESIGN (RESTORED) ================= -->
+        <div id="tab-writing" class="window-tab space-y-6">
           <div class="border-b border-cyberBorder pb-4 flex justify-between items-end">
             <div>
-              <h3 class="font-pixel text-2xl text-neonPink font-bold">WRITING_VAULT.LOG</h3>
-              <p class="text-xs font-mono text-slate-400">Creative storytelling and personal essays on Substack (@hellokieri).</p>
+              <h3 class="font-pixel text-2xl text-neonPink font-bold">WRITING_&_DESIGN.VAULT</h3>
+              <p class="text-xs font-mono text-slate-400">Creative storytelling on Substack (@hellokieri) and Canva visual design work.</p>
             </div>
             <a href="https://hellokieri.substack.com/" target="_blank" class="text-xs font-mono text-neonPink hover:underline flex items-center gap-1">
               SUBSTACK <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
             </a>
           </div>
 
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <!-- Substack Highlights Grid -->
+          <div class="space-y-3">
+            <span class="font-mono text-xs text-neonGold font-bold uppercase tracking-wider block">FEATURED ESSAYS</span>
             
-            <a href="https://hellokieri.substack.com/" target="_blank" class="group bg-cyberHeader/60 border border-cyberBorder hover:border-neonPink p-4 rounded-xl space-y-2.5 transition-all flex flex-col justify-between">
-              <div class="space-y-1.5">
-                <span class="text-[10px] font-mono text-slate-500">ESSAY // SEP 2026</span>
-                <h4 class="font-bold text-sm text-white group-hover:text-neonPink transition-colors">
-                  "who am i if i don't feel my emotions too deeply?"
-                </h4>
-                <p class="text-xs text-slate-400 line-clamp-3">
-                  Reflections on emotional vulnerability, personal depth, and finding quiet meaning in daily life.
-                </p>
-              </div>
-              <span class="text-[11px] font-mono text-neonPink flex items-center gap-1 pt-2">
-                Read Essay <i class="fa-solid fa-arrow-right text-[10px]"></i>
-              </span>
-            </a>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <a href="https://hellokieri.substack.com/" target="_blank" class="group bg-cyberHeader/60 border border-cyberBorder hover:border-neonPink p-4 rounded-xl space-y-2.5 transition-all flex flex-col justify-between">
+                <div class="space-y-1.5">
+                  <span class="text-[10px] font-mono text-slate-500">ESSAY // SEP 2026</span>
+                  <h4 class="font-bold text-sm text-white group-hover:text-neonPink transition-colors">
+                    "who am i if i don't feel my emotions too deeply?"
+                  </h4>
+                  <p class="text-xs text-slate-400 line-clamp-3">
+                    Reflections on emotional vulnerability, personal depth, and finding quiet meaning in daily life.
+                  </p>
+                </div>
+                <span class="text-[11px] font-mono text-neonPink flex items-center gap-1 pt-2">
+                  Read Essay <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                </span>
+              </a>
 
-            <a href="https://hellokieri.substack.com/" target="_blank" class="group bg-cyberHeader/60 border border-cyberBorder hover:border-neonPink p-4 rounded-xl space-y-2.5 transition-all flex flex-col justify-between">
-              <div class="space-y-1.5">
-                <span class="text-[10px] font-mono text-slate-500">REFLECTION // SEP 2026</span>
-                <h4 class="font-bold text-sm text-white group-hover:text-neonPink transition-colors">
-                  "in case you need a gentle reminder..."
-                </h4>
-                <p class="text-xs text-slate-400 line-clamp-3">
-                  Notes on self-compassion, reclaiming inner calm, and navigating busy days with grace.
-                </p>
-              </div>
-              <span class="text-[11px] font-mono text-neonPink flex items-center gap-1 pt-2">
-                Read Essay <i class="fa-solid fa-arrow-right text-[10px]"></i>
-              </span>
-            </a>
+              <a href="https://hellokieri.substack.com/" target="_blank" class="group bg-cyberHeader/60 border border-cyberBorder hover:border-neonPink p-4 rounded-xl space-y-2.5 transition-all flex flex-col justify-between">
+                <div class="space-y-1.5">
+                  <span class="text-[10px] font-mono text-slate-500">REFLECTION // SEP 2026</span>
+                  <h4 class="font-bold text-sm text-white group-hover:text-neonPink transition-colors">
+                    "in case you need a gentle reminder..."
+                  </h4>
+                  <p class="text-xs text-slate-400 line-clamp-3">
+                    Notes on self-compassion, reclaiming inner calm, and navigating busy days with grace.
+                  </p>
+                </div>
+                <span class="text-[11px] font-mono text-neonPink flex items-center gap-1 pt-2">
+                  Read Essay <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                </span>
+              </a>
 
-            <a href="https://hellokieri.substack.com/" target="_blank" class="group bg-cyberHeader/60 border border-cyberBorder hover:border-neonPink p-4 rounded-xl space-y-2.5 transition-all flex flex-col justify-between">
-              <div class="space-y-1.5">
-                <span class="text-[10px] font-mono text-slate-500">ESSAY // AUG 2026</span>
-                <h4 class="font-bold text-sm text-white group-hover:text-neonPink transition-colors">
-                  "one day more"
-                </h4>
-                <p class="text-xs text-slate-400 line-clamp-3">
-                  On transitions, small daily rituals, and taking life chapter by chapter.
-                </p>
-              </div>
-              <span class="text-[11px] font-mono text-neonPink flex items-center gap-1 pt-2">
-                Read Essay <i class="fa-solid fa-arrow-right text-[10px]"></i>
-              </span>
-            </a>
+              <a href="https://hellokieri.substack.com/" target="_blank" class="group bg-cyberHeader/60 border border-cyberBorder hover:border-neonPink p-4 rounded-xl space-y-2.5 transition-all flex flex-col justify-between">
+                <div class="space-y-1.5">
+                  <span class="text-[10px] font-mono text-slate-500">ESSAY // AUG 2026</span>
+                  <h4 class="font-bold text-sm text-white group-hover:text-neonPink transition-colors">
+                    "one day more"
+                  </h4>
+                  <p class="text-xs text-slate-400 line-clamp-3">
+                    On transitions, small daily rituals, and taking life chapter by chapter.
+                  </p>
+                </div>
+                <span class="text-[11px] font-mono text-neonPink flex items-center gap-1 pt-2">
+                  Read Essay <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                </span>
+              </a>
+            </div>
+          </div>
 
+          <!-- Canva Design Showcases -->
+          <div class="space-y-3 pt-2">
+            <span class="font-mono text-xs text-neonCyan font-bold uppercase tracking-wider block">CANVA BRAND DESIGN PROJECTS</span>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <!-- Design 1: Luna Haven Co. -->
+              <div class="bg-cyberHeader/60 border border-cyberBorder hover:border-neonCyan rounded-xl overflow-hidden p-4 flex gap-4 items-center transition-all group">
+                <div class="w-20 h-20 min-w-[80px] min-h-[80px] rounded-lg overflow-hidden flex-shrink-0 border border-neonCyan/40 bg-cyberCard relative flex items-center justify-center">
+                  <img src="./luna-haven.jpg" alt="Luna Haven Co." class="w-full h-full object-cover group-hover:scale-105 transition-transform" onerror="if(this.src.includes('luna-haven.jpg')) { this.src='./luna-haven.png'; } else { this.src='https://placehold.co/150x150/141622/00dfd8?text=Luna'; }">
+                </div>
+                <div class="space-y-1 flex-grow">
+                  <h5 class="font-bold text-sm text-white group-hover:text-neonCyan transition-colors">
+                    Luna Haven Co.
+                  </h5>
+                  <p class="text-xs text-slate-400">Cozy brand identity, Instagram mood boards, and aesthetic typography palettes created in Canva.</p>
+                  <div class="flex items-center justify-between pt-2">
+                    <span class="text-[10px] font-mono text-neonCyan bg-neonCyan/10 px-2 py-0.5 rounded">Brand Identity</span>
+                    <a href="https://canva.link/luna-haven-carrie-baclayon" target="_blank" rel="noopener noreferrer" class="text-[11px] font-mono text-neonCyan hover:underline font-bold flex items-center gap-1">
+                      CANVA PROJECT <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Design 2: Sunbaked Coffee Lab -->
+              <div class="bg-cyberHeader/60 border border-cyberBorder hover:border-neonGold rounded-xl overflow-hidden p-4 flex gap-4 items-center transition-all group">
+                <div class="w-20 h-20 min-w-[80px] min-h-[80px] rounded-lg overflow-hidden flex-shrink-0 border border-neonGold/40 bg-cyberCard relative flex items-center justify-center">
+                  <img src="./sunbaked.jpg" alt="Sunbaked Coffee Lab" class="w-full h-full object-cover group-hover:scale-105 transition-transform" onerror="this.src='https://placehold.co/150x150/141622/ffd700?text=Sunbaked';">
+                </div>
+                <div class="space-y-1 flex-grow">
+                  <h5 class="font-bold text-sm text-white group-hover:text-neonGold transition-colors">
+                    Sunbaked Coffee Lab
+                  </h5>
+                  <p class="text-xs text-slate-400">Cafe packaging concept, menu layout, and promotional social templates.</p>
+                  <div class="flex items-center justify-between pt-2">
+                    <span class="text-[10px] font-mono text-neonGold bg-neonGold/10 px-2 py-0.5 rounded">Print & Social</span>
+                    <span class="text-[11px] font-mono text-slate-500">Portfolio Archive</span>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
-        <!-- ================= TAB 4: BOOK COVERS (NEW) ================= -->
-        <div id="tab-bookcovers" class="window-tab hidden space-y-6">
+        <!-- ================= TAB 4: BOOK COVERS ================= -->
+        <div id="tab-bookcovers" class="window-tab space-y-6">
           <div class="border-b border-cyberBorder pb-4 flex justify-between items-end">
             <div>
               <h3 class="font-pixel text-2xl text-neonPink font-bold">BOOK_COVER_STUDIO.VAULT</h3>
@@ -544,13 +546,10 @@
             </span>
           </div>
 
-          <!-- Covers Grid -->
           <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
-            
-            <!-- Cover 1 -->
             <div class="bg-cyberHeader/60 border border-cyberBorder hover:border-neonPink p-4 rounded-xl space-y-3 transition-all group flex flex-col justify-between">
               <div class="aspect-[2/3] rounded-lg overflow-hidden border border-cyberBorder bg-cyberCard shadow-lg">
-                <img src="3e5a842b.jpeg" alt="Second Chances & Espresso" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                <img src="3e5a842b.jpeg" alt="Second Chances & Espresso" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.src='https://placehold.co/300x450/141622/ff0080?text=Second+Chances'">
               </div>
               <div class="space-y-1">
                 <span class="text-[10px] font-mono text-neonPink font-bold">CONTEMPORARY ROMANCE</span>
@@ -559,10 +558,9 @@
               </div>
             </div>
 
-            <!-- Cover 2 -->
             <div class="bg-cyberHeader/60 border border-cyberBorder hover:border-neonPink p-4 rounded-xl space-y-3 transition-all group flex flex-col justify-between">
               <div class="aspect-[2/3] rounded-lg overflow-hidden border border-cyberBorder bg-cyberCard shadow-lg">
-                <img src="8f42f215.jpeg" alt="Anatomy of a Quiet Summer" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                <img src="8f42f215.jpeg" alt="Anatomy of a Quiet Summer" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.src='https://placehold.co/300x450/141622/ff0080?text=Quiet+Summer'">
               </div>
               <div class="space-y-1">
                 <span class="text-[10px] font-mono text-neonPink font-bold">LITERARY FICTION</span>
@@ -571,10 +569,9 @@
               </div>
             </div>
 
-            <!-- Cover 3 -->
             <div class="bg-cyberHeader/60 border border-cyberBorder hover:border-neonPink p-4 rounded-xl space-y-3 transition-all group flex flex-col justify-between">
               <div class="aspect-[2/3] rounded-lg overflow-hidden border border-cyberBorder bg-cyberCard shadow-lg">
-                <img src="3dce596d.jpeg" alt="Things We Left in Manila" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                <img src="3dce596d.jpeg" alt="Things We Left in Manila" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.src='https://placehold.co/300x450/141622/ff0080?text=Things+We+Left+In+Manila'">
               </div>
               <div class="space-y-1">
                 <span class="text-[10px] font-mono text-neonPink font-bold">LITERARY FICTION</span>
@@ -583,10 +580,9 @@
               </div>
             </div>
 
-            <!-- Cover 4 -->
             <div class="bg-cyberHeader/60 border border-cyberBorder hover:border-neonPink p-4 rounded-xl space-y-3 transition-all group flex flex-col justify-between">
               <div class="aspect-[2/3] rounded-lg overflow-hidden border border-cyberBorder bg-cyberCard shadow-lg">
-                <img src="9513d7fb.jpeg" alt="The Saltwater Letters" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                <img src="9513d7fb.jpeg" alt="The Saltwater Letters" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.src='https://placehold.co/300x450/141622/ff0080?text=Saltwater+Letters'">
               </div>
               <div class="space-y-1">
                 <span class="text-[10px] font-mono text-neonPink font-bold">ROMANTIC LITERARY</span>
@@ -595,10 +591,9 @@
               </div>
             </div>
 
-            <!-- Cover 5 -->
             <div class="bg-cyberHeader/60 border border-cyberBorder hover:border-neonPink p-4 rounded-xl space-y-3 transition-all group flex flex-col justify-between">
               <div class="aspect-[2/3] rounded-lg overflow-hidden border border-cyberBorder bg-cyberCard shadow-lg">
-                <img src="2b267339.jpeg" alt="Midnight at the Conservatory" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                <img src="2b267339.jpeg" alt="Midnight at the Conservatory" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.src='https://placehold.co/300x450/141622/ff0080?text=Conservatory'">
               </div>
               <div class="space-y-1">
                 <span class="text-[10px] font-mono text-neonPink font-bold">GOTHIC ROMANCE</span>
@@ -607,10 +602,9 @@
               </div>
             </div>
 
-            <!-- Cover 6 -->
             <div class="bg-cyberHeader/60 border border-cyberBorder hover:border-neonPink p-4 rounded-xl space-y-3 transition-all group flex flex-col justify-between">
               <div class="aspect-[2/3] rounded-lg overflow-hidden border border-cyberBorder bg-cyberCard shadow-lg">
-                <img src="2495a6d4.jpeg" alt="A Study in Borrowed Time" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                <img src="2495a6d4.jpeg" alt="A Study in Borrowed Time" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.src='https://placehold.co/300x450/141622/ff0080?text=Borrowed+Time'">
               </div>
               <div class="space-y-1">
                 <span class="text-[10px] font-mono text-neonPink font-bold">LITERARY FICTION</span>
@@ -618,10 +612,8 @@
                 <p class="text-xs text-slate-400">Swiss typography and retro screenprinted cut-paper labyrinth motif.</p>
               </div>
             </div>
-
           </div>
 
-          <!-- Commission Callout -->
           <div class="bg-cyberHeader/80 border border-neonPink/40 p-4 rounded-xl flex flex-col sm:flex-row justify-between items-center gap-4 text-xs font-mono mt-4">
             <div>
               <span class="text-neonPink font-bold block mb-1">BOOK COVER COMMISSION INQUIRIES</span>
@@ -634,15 +626,13 @@
         </div>
 
         <!-- ================= TAB 5: CONNECT ================= -->
-        <div id="tab-connect" class="window-tab hidden space-y-6">
+        <div id="tab-connect" class="window-tab space-y-6">
           <div class="border-b border-cyberBorder pb-4">
             <h3 class="font-pixel text-2xl text-neonGold font-bold">COMMUNICATION_LINK.EXE</h3>
             <p class="text-xs font-mono text-slate-400">Initiate secure transmission for operations, virtual assistance, or book cover design inquiries.</p>
           </div>
 
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            
-            <!-- Left: Direct Links -->
             <div class="space-y-4">
               <div class="bg-cyberHeader/60 border border-cyberBorder p-4 rounded-xl space-y-3">
                 <span class="text-xs font-mono text-neonGold font-bold">DIRECT CHANNELS</span>
@@ -673,7 +663,6 @@
               </div>
             </div>
 
-            <!-- Right: Interactive Inquiry Form -->
             <form onsubmit="handleFormSubmit(event)" class="bg-cyberHeader/60 border border-cyberBorder p-5 rounded-xl space-y-4">
               <span class="text-xs font-mono text-neonGold font-bold block">DISPATCH MESSAGE</span>
               
@@ -688,7 +677,7 @@
                   <option>Book Cover Design (Romance / Literary)</option>
                   <option>Healthcare Operations / Dental RCM</option>
                   <option>Executive Virtual Assistant / DM Setting</option>
-                  <option>Other Collaboration</option>
+                  <option>Canva Brand Identity Project</option>
                 </select>
               </div>
 
@@ -701,7 +690,6 @@
                 SEND TRANSMISSION
               </button>
             </form>
-
           </div>
         </div>
 
@@ -720,7 +708,6 @@
 
   <!-- ================= JAVASCRIPT LOGIC ================= -->
   <script>
-    // Live Clock Function
     function updateClock() {
       const now = new Date();
       const hours = String(now.getHours()).padStart(2, '0');
@@ -731,28 +718,23 @@
     setInterval(updateClock, 1000);
     updateClock();
 
-    // Tab Switching Logic
     function switchTab(tabId) {
-      // Hide all tabs
       document.querySelectorAll('.window-tab').forEach(tab => {
         tab.classList.remove('window-active');
         tab.classList.add('hidden');
       });
 
-      // Remove glow/active state from all buttons
       document.querySelectorAll('.tab-btn').forEach(btn => {
-        btn.classList.remove('border-neonCyan', 'border-neonPurple', 'border-neonPink', 'border-neonGold', 'glow-cyan', 'glow-purple', 'glow-pink');
+        btn.classList.remove('border-neonCyan', 'border-neonPurple', 'border-neonPink', 'border-neonGold', 'glow-cyan', 'glow-purple', 'glow-pink', 'glow-gold');
         btn.classList.add('border-cyberBorder');
       });
 
-      // Show selected tab
       const targetTab = document.getElementById(`tab-${tabId}`);
       if (targetTab) {
         targetTab.classList.remove('hidden');
         targetTab.classList.add('window-active');
       }
 
-      // Highlight active button
       const targetBtn = document.getElementById(`btn-${tabId}`);
       if (targetBtn) {
         targetBtn.classList.remove('border-cyberBorder');
@@ -760,21 +742,19 @@
         if (tabId === 'systems') targetBtn.classList.add('border-neonPurple', 'glow-purple');
         if (tabId === 'writing') targetBtn.classList.add('border-neonPink', 'glow-pink');
         if (tabId === 'bookcovers') targetBtn.classList.add('border-neonPink', 'glow-pink');
-        if (tabId === 'connect') targetBtn.classList.add('border-neonGold');
+        if (tabId === 'connect') targetBtn.classList.add('border-neonGold', 'glow-gold');
       }
 
-      // Update Window Title Bar
       const titles = {
         'experience': 'module://work_experience.exe',
         'systems': 'module://systems_toolbelt.sys',
-        'writing': 'module://writing_vault.log',
+        'writing': 'module://writing_and_design.vault',
         'bookcovers': 'module://book_cover_studio.vault',
         'connect': 'module://communication_link.exe'
       };
       document.getElementById('windowTitle').innerText = titles[tabId] || 'module://terminal.exe';
     }
 
-    // Audio SFX Toggle (Simulated)
     let soundEnabled = true;
     function toggleAudioSound() {
       soundEnabled = !soundEnabled;
@@ -789,18 +769,6 @@
       }
     }
 
-    // Window Control Buttons (Visual feedback)
-    function closeCurrentWindow() {
-      alert('System Notification: Main process cannot be terminated.');
-    }
-    function minimizeWindow() {
-      alert('System Notification: Window minimized to taskbar buffer.');
-    }
-    function maximizeWindow() {
-      alert('System Notification: Window is already at maximum viewport dimensions.');
-    }
-
-    // Form Submission
     function handleFormSubmit(e) {
       e.preventDefault();
       alert('Transmission successful! Carrie will review your inquiry shortly.');
